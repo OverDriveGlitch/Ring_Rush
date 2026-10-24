@@ -54,7 +54,7 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and ui.state =="start":
                 ui.start_round()
-            elif event.key == pygame.K_r and ui.state =="game over":
+            elif event.key == pygame.K_r and ui.state =="game_over":
                 ui.start_round()
 
             elif event.key == pygame.K_ESCAPE:
