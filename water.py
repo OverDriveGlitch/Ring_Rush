@@ -17,6 +17,10 @@ class Water:
         self.right_active = False
 
         self.jet_y = self.tank.y + self.tank.height - bottom_of_tank
+        """jet positions"""
+        self.left_x = self.tank.x + self.tank.width // 4
+        self.middle_x = 150 + 600 // 2
+        self.right_x = (150 + 600) * 3//4
 
         
     

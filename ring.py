@@ -14,7 +14,7 @@ import settings
 # Add an is_scored flag so the same ring cannot score repeatedly.
 # If using Pymunk, store or reference the corresponding physics body.
 class Ring:
-    def __init__(self, x,y,image):
+    def __init__(self, x,y):
         #storing the starting spot of the ring
         self.x=x
         self.y=y
