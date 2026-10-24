@@ -200,6 +200,10 @@ class Physics:
             if (abs(distance - target_distance) <= tolerance and speed < 20):
                 ring.it_lands = True
                 ring.it_scores = True
+
+                ring.body.velocity = (0, 0)
+                ring.body.angular_velocity = 0
+                ring.body.body_type = pymunk.Body.KINEMATIC
                 points += 1
                 break
 
