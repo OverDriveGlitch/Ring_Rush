@@ -36,7 +36,9 @@ class Water:
         elif jet_name == "middle":
             self.middle_active = True
             self.middle_timer = self.jet_duration
-        
+        elif jet_name == "right":
+            self.right_active = True 
+            self.right_timer = self.jet_duration 
 
 
 
