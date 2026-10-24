@@ -45,6 +45,10 @@ while running:
 
     # dt = delta time since last frame, limits fps to 60
     dt = clock.tick(FPS) / 1000 
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_a]:
+        ui.leftpressed = True
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -76,9 +80,6 @@ while running:
 # Handle start, restart, and exit inputs as appropriate.
 # Avoid placing the physics calculations directly inside event handling.
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_a]:
-        ui.leftpressed = True
     #elif keys[pygame.K_d]:
      #   ui.rightpressed = True
     #elif keys[pygame.K_s]:
