@@ -26,26 +26,26 @@ class Physics:
     #creating a wall that is 900 by 600 and has a static body
     wall_left=pymunk.Segment(
       self.space.static_body,
-      (290,44),
-      (289,351),
+      (settings.LEFT_TANK,settings.TOP_TANK),
+      (settings.LEFT_TANK,settings.BOTTOM_TANK),
       5
     )
     wall_top=pymunk.Segment(
       self.space.static_body,
-      (290,44),
-      (637,44),
+      (settings.LEFT_TANK, settings.TOP_TANK),
+      (settings.RIGHT_TANK, settings.TOP_TANK),
       5
     )
     wall_right=pymunk.Segment(
       self.space.static_body,
-      (637,44),
-      (637,348),
+      (settings.RIGHT_TANK, settings.TOP_TANK),
+      (settings.RIGHT_TANK, settings.TOP_TANK),
       5
     )
     wall_bottom=pymunk.Segment(
       self.space.static_body,
-      (289,351),
-      (637, 348),
+      (settings.LEFT_TANK, settings.BOTTOM_TANK),
+      (settings.RIGHT_TANK, settings.BOTTOM_TANK),
       5
     )
     self.space.add(wall_left, wall_right, wall_bottom, wall_top) #this adds the walls to the collision calculations that pymuck has to do
