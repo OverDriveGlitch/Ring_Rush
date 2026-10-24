@@ -51,7 +51,7 @@ class Ring:
         # Draw a hollow ring
         #draw.circle(where, color, position, radius, thickness)
         pygame.draw.circle(
-            screen,self.clr,(int(x), int(y)),self.radius,4
+            screen,self.clr,(int(x), int(y)),self.rad,4
         )
 
 
