@@ -46,9 +46,6 @@ while running:
     # dt = delta time since last frame, limits fps to 60
     dt = clock.tick(FPS) / 1000 
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_a]:
-        ui.leftpressed = True
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -62,6 +59,9 @@ while running:
 
             elif event.key == pygame.K_ESCAPE:
                 running = False
+    
+    keys = pygame.key.get_pressed()
+    ui.leftpressed = keys[pygame.K_a]
 
     ui.update(dt)
 
