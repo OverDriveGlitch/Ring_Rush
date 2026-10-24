@@ -62,7 +62,7 @@ while running:
 
     screen.blit(ui.background_image, (0, 0))
 
-    # Tank and ring drawing here
+    # TANK AND RING DRAWING HERE
 
     # draw menus
     ui.draw(screen)

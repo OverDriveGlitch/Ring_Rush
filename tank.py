@@ -11,6 +11,8 @@ from pathlib import Path
 # Each peg position should use the same coordinate system as the rings.
 # Decide the peg radius and appearance.
 # Make the peg positions accessible to physics.py.
+
+"""The tank class stores the position and size of th water tank, as well as the three peg positions"""
 class Tank: 
   def __init__(self):
     self.x = (settings.SCREEN_WIDTH - settings.TANK_WIDTH) // 2
@@ -21,6 +23,7 @@ class Tank:
       (self.x + self.width // 4, self.y + self.height // 2),
       (self.x + self.width // 2, self.y + self.height // 4),
       (self.x + self.width * 3 // 4, self.y + self.height * 3 // 5)
+      self.peg_radius = 10
     ]
     pic_folder = Path(__file__).resolve().parent / "pic"
     self.tank_image = pygame.image.load(
@@ -43,7 +46,7 @@ class Tank:
         screen,
         (255, 105, 180),
         (x, y),
-        10
+        self.peg_radius
       )
 
 
