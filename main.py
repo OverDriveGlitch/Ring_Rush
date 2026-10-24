@@ -14,7 +14,7 @@ from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
 pygame.init()
 
 #setting up screen
-screen = pygame.display([[SCREEN_WIDTH, SCREEN_HEIGHT]])
+screen = pygame.display.set_mode([[SCREEN_WIDTH, SCREEN_HEIGHT]])
 
 # STEP 3: CREATE THE GAME OBJECTS
 # Create one Tank object first so its peg positions are available.
@@ -23,11 +23,24 @@ screen = pygame.display([[SCREEN_WIDTH, SCREEN_HEIGHT]])
 # Create the starting rings and add their physics bodies.
 # Hint: Use a loop to create multiple rings rather than repeating code.
 
+
 # STEP 4: START THE GAME LOOP
 # Continue until the player closes the window.
 # Calculate dt using the elapsed time since the previous frame.
 # Limit unusually large dt values to avoid sudden physics jumps.
 # Process events, update game logic, then draw the frame.
+
+clock = pygame.time.Clock()
+
+running = True
+while running:
+
+    # dt = delta time since last frame, limits fps to 60
+    dt = clock.tick(FPS) / 1000 
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
 # STEP 5: HANDLE INPUT
 # Handle the window-close event.
@@ -55,6 +68,8 @@ screen = pygame.display([[SCREEN_WIDTH, SCREEN_HEIGHT]])
 # Exit the game loop when requested.
 # Shut down Pygame cleanly.
 # Test that the game closes without errors.
+
+pygame.quit()
 
 # STEP 9: TEST INTEGRATION
 # Check that every imported class and called function exists.

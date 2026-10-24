@@ -14,13 +14,16 @@ FPS = 60
 # Define the left, right, top, and bottom boundaries of the tank.
 # The tank drawing and physics collision boundaries must use the same values.
 
-TANK_WIDTH = 347
-TANK_HEIGHT = 300
+TANK_WIDTH = 426
+TANK_HEIGHT = 334
 
-LEFT_TANK = 290
-RIGHT_TANK = 637
-TOP_TANK = 44
-BOTTOM_TANK = 348
+BUTTON_WIDTH = 37
+BUTTON_HEIGHT = 43
+
+LEFT_TANK = 237
+RIGHT_TANK = 663
+TOP_TANK = 76
+BOTTOM_TANK = 418
 
 # STEP 3: RING SETTINGS
 # Define the starting number of rings, their radius, and their mass.
@@ -34,9 +37,15 @@ RING_MASS = 1
 # Define water jet strength, jet duration, and water particle settings.
 # Tune these values through testing rather than guessing the final values.
 
-JET_STRENGTH = 500
+JET_STRENGTH = 1000
 JET_TIME = 0.7
 
+PARTICLE_COUNT = 5           # new particles spawned per frame while jet is on
+PARTICLE_SPEED = 250         # pixels per second
+PARTICLE_LIFETIME = 0.8      # seconds before a particle disappears
+PARTICLE_RADIUS = 3          # pixels
+PARTICLE_SPREAD = 30         # degrees of random angle variation
+PARTICLE_COLOR = (180, 220, 255)
 
 # STEP 5: PHYSICS SETTINGS
 # Define gravity, water drag, and approximate buoyancy settings.
