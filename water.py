@@ -15,12 +15,20 @@ class Water:
         self.left_active = False
         self.middle_active = False
         self.right_active = False
-
+        """height of the tank"""
         self.jet_y = self.tank.y + self.tank.height - bottom_of_tank
         """jet positions"""
         self.left_x = self.tank.x + self.tank.width // 4
         self.middle_x = 150 + 600 // 2
         self.right_x = (150 + 600) * 3//4
+
+        """jet timers"""
+        self.jet_duration = 0.25
+
+        self.left_timer = 0.0
+        self.middle_timer = 0.0
+        self.right_timer = 0.0
+        
 
         
     

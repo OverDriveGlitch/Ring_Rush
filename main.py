@@ -38,7 +38,6 @@ for i in range(NUM_RINGS):
     ring = Ring(300, 400)  # placeholder position for the ring
     physics.add_ring(ring)
     rings.append(ring)
-    ring.draw(screen)
 
 
 # STEP 4: START THE GAME LOOP
@@ -76,10 +75,14 @@ while running:
 
     ui.update(dt) 
 
+    # WILL MAKE RINGS MOVE IN WATER
+    # water.update(dt)
+    physics.update(rings, dt)
+
     screen.blit(ui.background_image, (0, 0))
 
-    # TANK AND RING DRAWING HERE
-    # ring.draw(screen)
+    for ring in rings:
+        ring.draw(screen)
 
     # draw menus
     ui.draw(screen)
