@@ -21,7 +21,7 @@ class UI:
     pygame.display.set_caption("Ring Rush") #title of the window
     pygame.font.init()
     self.game_font = pygame.font.SysFont("Arial", 24)
-  
+    pass
    
   # Store the current score.
 
@@ -39,6 +39,7 @@ class UI:
   def add_score(self, points):
       if self.state == "playing" and points > 0: 
         self.score += points
+      pass
   # Increase the score by the points received from main.py.
 
   # Only accept points for successful ring placements.
@@ -52,6 +53,8 @@ class UI:
               if self.remaining_time <= 0:
                   self.remaining_time = 0
                   self.state = "game_over"
+
+                  pass
   # Decrease the timer while the game is being played.
   # Stop the timer when the round ends.
   # Switch to the game-over state when time reaches zero.
@@ -59,6 +62,12 @@ class UI:
 
   # STEP 5: DEFINE ui.draw(self, screen)
   def draw(self, screen):
+    if self.state == "start":
+          screen.blit(self.start_image, (0,0))
+          return
+    elif self.state == "game_over":
+           screen.blit(self.end_image,(0,0))
+           return
     score_text = f"Score: {self.score}"
     time_text = f"Time remaning is: {self.remaining_time:.0f}"
     score_surface = self.game_font.render(score_text, True, "white")
@@ -68,20 +77,19 @@ class UI:
     screen.blit(time_surface,(100,200))
   # Draw instructions or prompts when appropriate.
     instruction_text = "Put all the rings inside the hooks"
-    instruction_surface = game.font.render(instruction_text, True, "white")
+    instruction_surface = game_font.render(instruction_text, True, "white")
     screen.blit(instruction_surface, (450, 20))
   # Draw the start screen or game-over screen based on the game state.
-    if self.state == "start":
-      screen.blit(self.start_image, (0,0))
-      return
-    elif self.state == "game_over":
-       screen.blit(self.end_image,(0,0))
-       return
+    pass
   # Keep drawing separate from updating the score and timer.
     #already is seperate lowkey
   # STEP 6: DEFINE ANY EXTRA UI FUNCTIONS
   # Add separate functions for start instructions, game over, and restart
-  # if that makes the code easier to organize.
+  def start_round(self):
+      self.score = settings.STARTING_SCORE
+      self.remaining_time = settings.ROUND_TIME
+      self.state = "playing"
+        # if that makes the code easier to organize.
   # Agree with main.py on how the player starts and restarts a round.
 
   # STEP 7: TEST THE UI

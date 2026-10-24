@@ -20,6 +20,7 @@ class tank:
       (self.x + self.width // 2, self.y + self.height // 4),
       (self.x + self.width * 3 // 4, self.y + self.height * 3 // 5)
     ]
+  pass
 
   
 
