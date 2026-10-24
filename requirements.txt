@@ -1,3 +1,2 @@
-# Add the required package names here after agreeing on the physics engine.
-# Pygame is required for the game window and drawing.
-# Pymunk is required only if the team chooses it for physics.
+pygame
+Pillow
