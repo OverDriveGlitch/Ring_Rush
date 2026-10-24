@@ -1,6 +1,7 @@
 # STEP 1: IMPORTS
 # Import Pygame and settings.py.
-
+import pygame
+import settings
 # STEP 2: CREATE THE Tank CLASS
 # Define Tank.__init__(self).
 # Store the tank boundaries using the shared settings constants.
@@ -8,6 +9,11 @@
 # Each peg position should use the same coordinate system as the rings.
 # Decide the peg radius and appearance.
 # Make the peg positions accessible to physics.py.
+class tank: 
+  def __init__(self):
+    self.width = settings.
+    self.height = 
+
 
 # STEP 3: DEFINE tank.draw(self, screen)
 # Draw the tank outline and its boundaries.
