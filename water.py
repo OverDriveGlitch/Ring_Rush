@@ -28,7 +28,17 @@ class Water:
         self.left_timer = 0.0
         self.middle_timer = 0.0
         self.right_timer = 0.0
+
+    def activate_jet(self, jet_name):
+        if jet_name == "left":
+            self.left_active = True
+            self.left_timer = self.jet_duration 
+        elif jet_name == "middle":
+            self.middle_active = True
+            self.middle_timer = self.jet_duration
         
+
+
 
         
     
