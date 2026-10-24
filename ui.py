@@ -62,14 +62,17 @@ def draw(self, screen)
   time_text = f"Time remaning is: {self.time_remaining:.0f}"
   score_surface = game_font.render(score_text, True, "white")
   time_surface = game_font.render(time_text, True, "white")
+  # Draw the current score and remaining time.
   window.blit(score_surface, (100,100))
   window.blit(time_surface,(100,200))
-  
-# Draw the current score and remaining time.
 # Draw instructions or prompts when appropriate.
+  instruction_text = "Put all the rings inside the hooks"
+  instruction_surface = game.font.render(instruction_text, True, "white")
+  window.blit(instruction_surface, (450, 20))
 # Draw the start screen or game-over screen based on the game state.
+  window.fill()
 # Keep drawing separate from updating the score and timer.
-
+  #already is seperate lowkey
 # STEP 6: DEFINE ANY EXTRA UI FUNCTIONS
 # Add separate functions for start instructions, game over, and restart
 # if that makes the code easier to organize.
