@@ -48,33 +48,36 @@ class Physics:
     )
     self.space.add(wall_left, wall_right, wall_bottom, wall_top) #this adds the walls to the collision calculations that pymuck has to do
     
-  # Add collision shapes for the pegs using the positions in tank.pegs.
+    # Add collision shapes for the pegs using the positions in tank.pegs.
   
-  peg_shape1 = pymunk.Circle(
-    self.space.static_body,
-    8,
-    (settings.P_X1+(settings.P_X1-settings.P_X2), settings.P_Y1+(settings.P_Y1-settings.P_Y2))
-  )
-
-  peg_shape2 = pymunk.Circle(
+    peg_shape1 = pymunk.Circle(
       self.space.static_body,
-      8,
-      (settings.P2_X1+(settings.P2_X2-settings.P2_X2), settings.P2_Y1+(settings.P2_Y1-settings.P2_Y2))
+      2,
+      (settings.P_X1+(settings.P_X1-settings.P_X2), settings.P_Y1+(settings.P_Y1-settings.P_Y2))
     )
 
-  peg_shape3 = pymunk.Circle(
-      self.space.static_body,
-      8,
-      (settings.P3_X1+(settings.P3_X1-settings.P3_X2), settings.P3_Y1+(settings.P3_Y1-settings.P3_Y2))
-    )
+    peg_shape2 = pymunk.Circle(
+        self.space.static_body,
+        2,
+        (settings.P2_X1+(settings.P2_X1-settings.P2_X2), settings.P2_Y1+(settings.P2_Y1-settings.P2_Y2))
+      )
+
+    peg_shape3 = pymunk.Circle(
+        self.space.static_body,
+        2,
+        (settings.P3_X1+(settings.P3_X1-settings.P3_X2), settings.P3_Y1+(settings.P3_Y1-settings.P3_Y2))
+      )
   
-  #fjkjhdkjfk
+
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
 # Create a physics body and collision shape for each ring.
 # Choose mass, moment of inertia, and collision geometry.
 # Add each body and shape to the physics space.
 # Make sure ring.py can access the matching physics body.
 # Hint: Pymunk bodies and shapes are separate objects.
+  def add_ring(self, ring):
+    #create a physics body for the ring
+    pass
 
 # STEP 4: DEFINE physics.update(self, rings, water, dt)
 # This function is called once per game frame by main.py.

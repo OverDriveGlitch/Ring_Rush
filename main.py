@@ -5,6 +5,7 @@ import pygame
 import pymunk
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
 from tank import tank
+from physics import Physics
 
 # STEP 2: INITIALIZE PYGAME
 # Initialize Pygame.
@@ -24,7 +25,7 @@ screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 # Create the starting rings and add their physics bodies.
 # Hint: Use a loop to create multiple rings rather than repeating code.
 
-game_tank = tank()
+tank = tank()
 
 # STEP 4: START THE GAME LOOP
 # Continue until the player closes the window.
@@ -57,6 +58,8 @@ while running:
 # Pass those points to ui.add_score(points).
 # Call ui.update(dt) to update the timer and game state.
 # Only update gameplay physics while the game is actively being played.
+
+
 
 # STEP 7: DRAW THE FRAME
 # Clear the screen.
