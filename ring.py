@@ -36,13 +36,23 @@ class Ring:
 
 
 
-# STEP 3: CREATE ring.draw(self, screen)
-def ring(self,screen):
-    
+# STEP 3: CREATE ring.draw(self, screen)    
 # Draw the ring on the Pygame screen using its current position.
 # Hint: pygame.draw.circle() can draw a ring outline using a width value.
 # Convert floating-point coordinates to integers when drawing.
 # The drawing position must match the physics body's position.
+    def draw (self,screen):
+        if self.body is not None:
+            #checking if the ring has a body
+            x, y = self.body.position
+        else:
+            x, y = self.x, self.y
+
+        # Draw a hollow ring
+        #draw.circle(where, color, position, radius, thickness)
+        pygame.draw.circle(
+            screen,self.colour,(int(x), int(y)),self.radius,4
+        )
 
 
 # STEP 4: DECIDE HOW LANDED RINGS WORK
