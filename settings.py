@@ -25,6 +25,21 @@ RIGHT_TANK = 663
 TOP_TANK = 76
 BOTTOM_TANK = 418
 
+# peg positions (placeholders)
+P_X1 = 0
+P_X2 = 0
+P2_X1 = 0
+P2_X2 = 0
+P3_X1 = 0
+P3_X2 = 0
+
+P_Y1 = 0
+P_Y2 = 0
+P2_Y1 = 0
+P2_Y2 = 0
+P3_Y1 = 0
+P3_Y2 = 0
+
 # STEP 3: RING SETTINGS
 # Define the starting number of rings, their radius, and their mass.
 # Keep the mass consistent with the physics system if using Pymunk.
