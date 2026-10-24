@@ -8,8 +8,6 @@ import settings
 # Define Physics.__init__(self, tank).
 # Create the physics space if using Pymunk.
 # Configure gravity and the simulation settings.
-
-# Add collision shapes for the pegs using the positions in tank.pegs.
 # Keep the physics boundaries aligned with the tank's visual boundaries.
 class Physics:
   def __init__(self, tank):
@@ -50,6 +48,8 @@ class Physics:
     )
     self.space.add(wall_left, wall_right, wall_bottom, wall_top) #this adds the walls to the collision calculations that pymuck has to do
     
+  # Add collision shapes for the pegs using the positions in tank.pegs.
+  
   
   
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
