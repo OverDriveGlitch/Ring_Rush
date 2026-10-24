@@ -50,8 +50,12 @@ class Physics:
     
   # Add collision shapes for the pegs using the positions in tank.pegs.
   
-  
-  
+  peg_shape = pymunk.Circle(
+    self.space.static_body,
+    8,
+    (x, y)
+)
+  #fjkjhdkjfk
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
 # Create a physics body and collision shape for each ring.
 # Choose mass, moment of inertia, and collision geometry.
