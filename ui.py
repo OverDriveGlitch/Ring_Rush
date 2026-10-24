@@ -82,7 +82,7 @@ class UI:
       instruction_text = "Put all the rings inside the hooks"
       instruction_surface = self.game_font.render(instruction_text, True, "white")
       screen.blit(instruction_surface, (450, 20))
-      self.leftpressed = False
+    
       #if a button is pressed then the image will change
       if self.leftpressed:
           screen.blit(self.button_image, (250, 480))
