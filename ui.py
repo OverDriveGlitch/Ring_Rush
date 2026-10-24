@@ -86,7 +86,7 @@ class UI:
     
       #if a button is pressed then the image will change
       if self.leftpressed:
-          screen.blit(self.button_image, (250, 480))
+          screen.blit(self.button_image, (250, 484))
       else:
           screen.blit(self.button_image,(250,480))
     # Draw the start screen or game-over screen based on the game state.
