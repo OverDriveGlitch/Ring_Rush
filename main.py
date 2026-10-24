@@ -6,6 +6,7 @@ import pymunk
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
 from tank import tank
 from physics import Physics
+from ui import UI
 
 # STEP 2: INITIALIZE PYGAME
 # Initialize Pygame.
@@ -21,11 +22,14 @@ screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 # STEP 3: CREATE THE GAME OBJECTS
 # Create one Tank object first so its peg positions are available.
 # Create Physics using that tank.
-# Create Water and UI objects.
+# Create Water and UI objects. (wait for water)
 # Create the starting rings and add their physics bodies.
 # Hint: Use a loop to create multiple rings rather than repeating code.
 
 tank = tank()
+physics = Physics()
+ui = UI()
+
 
 # STEP 4: START THE GAME LOOP
 # Continue until the player closes the window.
@@ -37,6 +41,8 @@ clock = pygame.time.Clock()
 
 running = True
 while running:
+
+    screen.fill("blue")
 
     # dt = delta time since last frame, limits fps to 60
     dt = clock.tick(FPS) / 1000 
@@ -50,6 +56,11 @@ while running:
 # Detect the agreed key or button for activating the water jet.
 # Handle start, restart, and exit inputs as appropriate.
 # Avoid placing the physics calculations directly inside event handling.
+
+keys = pygame.key.get_pressed()
+
+    
+
 
 # STEP 6: UPDATE THE GAME
 # Call water.update(dt).
@@ -69,7 +80,7 @@ while running:
 # Draw the score, timer, and current screen.
 # Update the display after all drawing is complete.
 
-screen.fill("blue")
+
 
 # STEP 8: END THE GAME
 # Exit the game loop when requested.
