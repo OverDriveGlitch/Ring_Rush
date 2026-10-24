@@ -75,6 +75,6 @@ BUOYANCY = 0.5
 # Define the round duration, starting score, and points per successful ring.
 # Import these constants into other files instead of duplicating the values.
 
-ROUND_TIME = 30
+ROUND_TIME = 120
 STARTING_SCORE = 0
 RING_POINTS = 50
