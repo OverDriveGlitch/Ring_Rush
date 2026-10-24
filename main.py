@@ -30,8 +30,6 @@ tank = Tank()
 physics = Physics(tank)
 ui = UI()
 
-ui.draw(screen)
-
 
 # STEP 4: START THE GAME LOOP
 # Continue until the player closes the window.
@@ -59,6 +57,15 @@ while running:
 
             elif event.key == pygame.K_ESCAPE:
                 running = False
+
+    ui.update(dt)
+
+    screen.blit(ui.background_image, (0, 0))
+
+    # Tank and ring drawing here
+
+    # draw menus
+    ui.draw(screen)
 
 # STEP 5: HANDLE INPUT
 # Handle the window-close event.
