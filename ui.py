@@ -91,7 +91,7 @@ class UI:
       IF WE HAVE TIME CHANGE THIS BUTTON PLS OMG ITS BAD
       """
       if self.leftpressed:
-          screen.blit(self.button_image, (231, 412))
+          screen.blit(self.button_image, (231, 413))
       
      
     # Draw the start screen or game-over screen based on the game state.
