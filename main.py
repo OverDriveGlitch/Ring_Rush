@@ -36,7 +36,7 @@ water = Water(tank)
 rings = []
 for i in range(NUM_RINGS):
     ring = Ring(280 + i * 70, 100)
-    ring.clr = (100 + (30 *i), 25 + (30 * i), 25 + (30 * i))
+    ring.clr = (255 - (30 * i), 90 + (50 * i), 80 + (40 * i))
     physics.add_ring(ring)
     rings.append(ring)
 
