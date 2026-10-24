@@ -53,14 +53,14 @@ class Tank:
     for x, y in self.peg_positions:
       pygame.draw.line(
         screen,
-        (255, 105, 180),
+        (255, 120, 0),
         (x, self.y + 15),
         (x,y),
         6
       )
       pygame.draw.circle(
         screen,
-        (255, 105, 180),
+        (255, 120, 0),
         (x, y),
         self.peg_radius
       )
