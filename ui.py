@@ -20,7 +20,6 @@ class UI:
     self.score = settings.STARTING_SCORE
     self.button_image = pygame.image.load("pic/button.png")
     print("Button image size:", self.button_image.get_size())
-    self.button_image = pygame.transform.scale(self.button_image, (80,50))
     self.end_image = pygame.image.load("pic/End.png")
     self.start_image = pygame.image.load("pic/Start.png")
     self.background_image = pygame.image.load("pic/Ring_Rush.png")
@@ -28,6 +27,7 @@ class UI:
     pygame.font.init()
     self.game_font = pygame.font.SysFont("Arial", 24)
     self.button_image = pygame.transform.scale(self.button_image, (175,175))
+
    
     # Store the current score.
 
@@ -92,7 +92,10 @@ class UI:
       """
       if self.leftpressed:
           screen.blit(self.button_image, (231, 413))
-      
+      if self.rightpressed:
+          screen.blit(self.button_image, (431, 413))
+      if self.midpressed:
+          screen.blit(self.button_image, (631, 413))
      
     # Draw the start screen or game-over screen based on the game state.
     
