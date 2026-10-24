@@ -45,7 +45,7 @@ P3_Y2 = 0
 # Keep the mass consistent with the physics system if using Pymunk.
 
 NUM_RINGS = 4
-RING_RAD = 20
+RING_RAD = 1
 RING_MASS = 1 
 
 # STEP 4: WATER SETTINGS
