@@ -17,6 +17,7 @@ class UI:
     self.remaining_time = settings.ROUND_TIME
     self.state = "start"
     self.score = settings.STARTING_SCORE
+    self.button_image = pygame.image.load("pic/button.png")
     self.end_image = pygame.image.load("pic/End.png")
     self.start_image = pygame.image.load("pic/Start.png")
     self.background_image = pygame.image.load("pic/Ring_Rush.png")
@@ -81,6 +82,12 @@ class UI:
       instruction_text = "Put all the rings inside the hooks"
       instruction_surface = self.game_font.render(instruction_text, True, "white")
       screen.blit(instruction_surface, (450, 20))
+      self.left_pressed = False
+      #if a button is pressed then the image will change
+      if self.left_pressed:
+          screen.blit(self.button_image, (250, 480))
+      else:
+          screen.blit(self.button_image,(250,480))
     # Draw the start screen or game-over screen based on the game state.
     
     # Keep drawing separate from updating the score and timer.
@@ -93,7 +100,7 @@ class UI:
       self.state = "playing"
         # if that makes the code easier to organize.
     # Agree with main.py on how the player starts and restarts a round.
-
+  
     # STEP 7: TEST THE UI
     # Check that the score increases when main.py reports earned points.
     # Check that the timer stops when the round ends.

@@ -101,6 +101,16 @@ class Physics:
 # Return the number of newly earned points for this frame.
 # Hint: Use Pymunk collision handlers or carefully designed overlap checks.
 # Do not advance the simulation by a fixed amount if frame times vary.
+  def update(self, rings, water, dt):
+    #using the pymunk advance simulation by dt seconds 
+    self.space.step(dt)
+    # updates the rings position with the current
+    for ring in rings:
+        if ring.body is not None:
+            ring.x = ring.body.position.x
+            ring.y = ring.body.position.y
+    # retuns the updated score
+    return 0
 
 # STEP 5: APPLY WATER FORCES
 # Only push rings that are within the jet's affected region.
@@ -108,6 +118,7 @@ class Physics:
 # Apply force over time for a sustained push, or an impulse for a quick kick.
 # Make sure the visual jet and the physical force agree.
 # Hint: A jet that pushes every ring equally will feel less convincing.
+
 
 # STEP 6: SIMULATE FLOATING
 # Approximate buoyancy by applying an upward force.
