@@ -12,7 +12,7 @@ import settings
 class tank: 
   def __init__(self):
     self.width = tankwidth
-    self.height = tank height
+    self.height = tankheight
 
 
 # STEP 3: DEFINE tank.draw(self, screen)
