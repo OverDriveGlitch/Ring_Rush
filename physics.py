@@ -39,7 +39,7 @@ class Physics:
     wall_right=pymunk.Segment(
       self.space.static_body,
       (settings.RIGHT_TANK, settings.TOP_TANK),
-      (settings.RIGHT_TANK, settings.TOP_TANK),
+      (settings.RIGHT_TANK, settings.BOTTOM_TANK),
       5
     )
     wall_bottom=pymunk.Segment(
