@@ -8,7 +8,7 @@ import settings
 # Define Ring.__init__(self, x, y).
 # Inputs: the ring's starting x and y coordinates.
 # Store x and y as the ring's current position.
-# Create vx and vy to represent horizontal and vertical velocity.
+# Create     vx and vy to represent horizontal and vertical velocity.
 # Store radius and colour for drawing.
 # Add an is_landed flag to track whether the ring has scored.
 # Add an is_scored flag so the same ring cannot score repeatedly.
