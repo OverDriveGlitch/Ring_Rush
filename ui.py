@@ -58,9 +58,12 @@ pygame.display.set_caption("Ring Rush") #title of the window
 
 # STEP 5: DEFINE ui.draw(self, screen)
 def draw(self, screen)
-text_score = str(player.score)
-text_surface = game_font.render(text_score, False, "white")
-window.blit(text_surface, (100,100))
+  score_text = f"Score: {self.score}"
+  time_text = f"Time remaning is: {self.time_remaining:.0f}"
+  score_surface = game_font.render(score_text, True, "white")
+  time_surface = game_font.render(time_text, True, "white")
+  window.blit(score_surface, (100,100))
+  window.blit(time_surface,(100,200))
   
 # Draw the current score and remaining time.
 # Draw instructions or prompts when appropriate.
