@@ -7,6 +7,7 @@ from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
 from tank import Tank
 from physics import Physics
 from ui import UI
+from ring import Ring 
 
 # STEP 2: INITIALIZE PYGAME
 # Initialize Pygame.
@@ -75,7 +76,14 @@ while running:
 # Handle start, restart, and exit inputs as appropriate.
 # Avoid placing the physics calculations directly inside event handling.
 
-keys = pygame.key.get_pressed()
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w]:
+        ui.leftpressed = True
+    elif keys[pygame.K_d]:
+        ui.rightpressed = True
+    elif keys[pygame.K_s]:
+        ui.midpressed = True
+
 
     
 
