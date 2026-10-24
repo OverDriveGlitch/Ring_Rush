@@ -3,11 +3,12 @@
 
 import pygame
 import pymunk
-from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
+from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS, NUM_RINGS
 from tank import Tank
 from physics import Physics
 from ui import UI
 from ring import Ring 
+from water import Water
 
 # STEP 2: INITIALIZE PYGAME
 # Initialize Pygame.
@@ -30,7 +31,13 @@ screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 tank = Tank()
 physics = Physics(tank)
 ui = UI()
+water = Water(tank)
 
+rings = []
+for i in range(NUM_RINGS):
+    ring = Ring(100, 100)  # placeholder position for the ring
+    physics.add_ring(ring)
+    rings.append(ring)
 
 # STEP 4: START THE GAME LOOP
 # Continue until the player closes the window.
@@ -70,6 +77,7 @@ while running:
     screen.blit(ui.background_image, (0, 0))
 
     # TANK AND RING DRAWING HERE
+    ring.draw(screen)
 
     # draw menus
     ui.draw(screen)
