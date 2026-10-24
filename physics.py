@@ -2,19 +2,56 @@
 # Import Pymunk and settings.py if the team chooses Pymunk.
 # Import or reference the Ring class as needed.
 import pygame
-import pymunck
+import pymunk
 import settings
 # STEP 2: CREATE THE Physics CLASS
 # Define Physics.__init__(self, tank).
 # Create the physics space if using Pymunk.
 # Configure gravity and the simulation settings.
-# Create static collision shapes for the tank walls.
+
 # Add collision shapes for the pegs using the positions in tank.pegs.
 # Keep the physics boundaries aligned with the tank's visual boundaries.
 class Physics:
   def __init__(self, tank):
-    """this function always runs when creating a new physics object"""
+    """
+    This function always runs when creating a new physics object. The perameters of this function are as followed:
+      self: refers to the physics object being created
+      tank: dimension and peg positionss.
+    """
+    self.tank=tank
+    self.space=pymunk.Space() #creates a pysical space for the object Pysics
+    self.space.gravity=(0,900) #horizontal acceleration is zero and vertical acceleration is 900
 
+    # Create static collision shapes for the tank walls.
+    #creating a wall that is 900 by 600 and has a static body
+    wall_left=pymunk.Segment(
+      self.space.static_body,
+      (290,44),
+      (289,351),
+      5
+    )
+    wall_top=pymunk.Segment(
+      self.space.static_body,
+      (290,44),
+      (637,44),
+      5
+    )
+    wall_right=pymunk.Segment(
+      self.space.static_body,
+      (637,44),
+      (637,348),
+      5
+    )
+    wall_bottom=pymunk.Segment(
+      self.space.static_body,
+      (289,351),
+      (637, 348),
+      5
+    )
+    self.space.add(wall_left, wall_right, wall_bottom, wall_top) #this adds the walls to the collision calculations that pymuck has to do
+    
+  
+  
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
 # Create a physics body and collision shape for each ring.
 # Choose mass, moment of inertia, and collision geometry.
