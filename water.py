@@ -43,11 +43,31 @@ class Water:
     """Creates the method that updates the water jet as time passes"""
     def update(self, dt):
         if self.left_active:
-            self.timer -= dt
+            self.left_timer -= dt
 
             if self.left_timer <= 0:
                 self.left_timer = 0
                 self.left_active = False 
+
+        elif self.middle_active: 
+            self.middle_timer -= dt
+
+            if self.middle_active <= 0:
+             self.middle_timer = 0
+             self.middle_timer = False
+
+        elif self.right_active:
+            self.right_timer -= dt
+
+            if self.right_timer <= 0:
+                self.right_timer = 0
+                self.right_timer = False 
+
+
+
+
+
+        
 
 
 
