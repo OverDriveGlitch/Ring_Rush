@@ -79,10 +79,10 @@ while running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
         ui.leftpressed = True
-    elif keys[pygame.K_d]:
-        ui.rightpressed = True
-    elif keys[pygame.K_s]:
-        ui.midpressed = True
+    #elif keys[pygame.K_d]:
+     #   ui.rightpressed = True
+    #elif keys[pygame.K_s]:
+     #   ui.midpressed = True
 
 
     
