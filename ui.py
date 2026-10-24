@@ -92,10 +92,10 @@ class UI:
       """
       if self.leftpressed:
           screen.blit(self.button_image, (231, 413))
-      if self.rightpressed:
-          screen.blit(self.button_image, (431, 413))
       if self.midpressed:
-          screen.blit(self.button_image, (631, 413))
+          screen.blit(self.button_image, (362, 413))
+      if self.rightpressed:
+          screen.blit(self.button_image, (501, 413))
      
     # Draw the start screen or game-over screen based on the game state.
     
