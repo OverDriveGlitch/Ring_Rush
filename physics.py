@@ -1,6 +1,8 @@
 # STEP 1: IMPORTS
 # Import Pymunk and settings.py if the team chooses Pymunk.
 # Import or reference the Ring class as needed.
+import pygame
+import pymunck
 
 # STEP 2: CREATE THE Physics CLASS
 # Define Physics.__init__(self, tank).
