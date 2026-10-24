@@ -4,7 +4,7 @@
 import pygame
 import pymunk
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
-from tank import tank
+from tank import Tank
 from physics import Physics
 from ui import UI
 
@@ -26,7 +26,7 @@ screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 # Create the starting rings and add their physics bodies.
 # Hint: Use a loop to create multiple rings rather than repeating code.
 
-tank = tank()
+tank = Tank()
 physics = Physics()
 ui = UI()
 
@@ -42,7 +42,7 @@ clock = pygame.time.Clock()
 running = True
 while running:
 
-    screen.fill("blue")
+    screen.fill((255,255,255))
 
     # dt = delta time since last frame, limits fps to 60
     dt = clock.tick(FPS) / 1000 
