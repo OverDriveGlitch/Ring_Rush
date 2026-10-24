@@ -14,16 +14,31 @@ FPS = 60
 # Define the left, right, top, and bottom boundaries of the tank.
 # The tank drawing and physics collision boundaries must use the same values.
 
-TANK_WIDTH = 426
-TANK_HEIGHT = 334
+TANK_WIDTH = 423
+TANK_HEIGHT = 342
 
 BUTTON_WIDTH = 37
 BUTTON_HEIGHT = 43
 
 LEFT_TANK = 237
-RIGHT_TANK = 663
+RIGHT_TANK = 660
 TOP_TANK = 76
 BOTTOM_TANK = 418
+
+# peg positions (placeholders)
+P_X1 = 0
+P_X2 = 0
+P2_X1 = 0
+P2_X2 = 0
+P3_X1 = 0
+P3_X2 = 0
+
+P_Y1 = 0
+P_Y2 = 0
+P2_Y1 = 0
+P2_Y2 = 0
+P3_Y1 = 0
+P3_Y2 = 0
 
 # STEP 3: RING SETTINGS
 # Define the starting number of rings, their radius, and their mass.
