@@ -60,3 +60,20 @@ class Ring:
 # Decide whether the physics system will lock it in place or attach it
 # to a peg using a suitable physics constraint.
 # Keep the ring's landed/scored state consistent with physics.py.
+def land(self):
+    # A ring should only land once
+    if self.it_lands:
+        return
+
+    self.it_lands = True
+    self.it_scores = True
+
+    # Stop the ring from moving
+    if self.body is not None:
+        self.body.velocity = (0, 0)
+        self.body.angular_velocity = 0
+        self.body.force = (0, 0)
+        self.body.torque = 0
+
+        # Keep the ring fixed after it lands
+        self.body.body_type = pymunk.Body.KINEMATIC
