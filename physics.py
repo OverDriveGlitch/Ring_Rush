@@ -3,7 +3,7 @@
 # Import or reference the Ring class as needed.
 import pygame
 import pymunck
-
+import settings
 # STEP 2: CREATE THE Physics CLASS
 # Define Physics.__init__(self, tank).
 # Create the physics space if using Pymunk.
@@ -11,6 +11,9 @@ import pymunck
 # Create static collision shapes for the tank walls.
 # Add collision shapes for the pegs using the positions in tank.pegs.
 # Keep the physics boundaries aligned with the tank's visual boundaries.
+class Physics:
+  def __init__(self, tank):
+    """this function always runs when creating a new physics object"""
 
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
 # Create a physics body and collision shape for each ring.
