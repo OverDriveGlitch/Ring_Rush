@@ -62,8 +62,10 @@ while running:
     
     keys = pygame.key.get_pressed()
     ui.leftpressed = keys[pygame.K_a]
+    ui.midpressed = keys[pygame.K_s]
+    ui.rightpressed = keys[pygame.K_d]
 
-    ui.update(dt)
+    ui.update(dt) 
 
     screen.blit(ui.background_image, (0, 0))
 

@@ -19,13 +19,15 @@ class UI:
     self.state = "start"
     self.score = settings.STARTING_SCORE
     self.button_image = pygame.image.load("pic/button.png")
+    print("Button image size:", self.button_image.get_size())
     self.end_image = pygame.image.load("pic/End.png")
     self.start_image = pygame.image.load("pic/Start.png")
     self.background_image = pygame.image.load("pic/Ring_Rush.png")
     pygame.display.set_caption("Ring Rush") #title of the window
     pygame.font.init()
     self.game_font = pygame.font.SysFont("Arial", 24)
-    pass
+    self.button_image = pygame.transform.scale(self.button_image, (175,175))
+
    
     # Store the current score.
 
@@ -85,10 +87,16 @@ class UI:
       screen.blit(instruction_surface, (450, 20))
     
       #if a button is pressed then the image will change
+      """
+      IF WE HAVE TIME CHANGE THIS BUTTON PLS OMG ITS BAD
+      """
       if self.leftpressed:
-          screen.blit(self.button_image, (250, 484))
-      else:
-          screen.blit(self.button_image,(250,480))
+          screen.blit(self.button_image, (231, 413))
+      if self.midpressed:
+          screen.blit(self.button_image, (362, 413))
+      if self.rightpressed:
+          screen.blit(self.button_image, (501, 413))
+     
     # Draw the start screen or game-over screen based on the game state.
     
     # Keep drawing separate from updating the score and timer.
