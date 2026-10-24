@@ -25,7 +25,7 @@ class Ring:
 
         # storing radius and color
         self.rad = settings.RING_RAD
-        self.clr = (255, 0, 0)
+        self.clr = (255, 120, 0)
         
         # connecting body in physics.py
         self.body = None
