@@ -36,7 +36,7 @@ water = Water(tank)
 rings = []
 for i in range(NUM_RINGS):
     ring = Ring(280 + i * 70, 100)
-    ring.clr = (255 - (30 * i), 90 + (50 * i), 80 + (40 * i))
+    ring.clr = (255 - (30 * i), 90 + (50 * i), 40)
     physics.add_ring(ring)
     rings.append(ring)
 
@@ -48,6 +48,10 @@ for i in range(NUM_RINGS):
 # Process events, update game logic, then draw the frame.
 
 clock = pygame.time.Clock()
+
+previous_left = False
+previous_middle = False
+previous_right = False
 
 running = True
 while running:
@@ -74,6 +78,19 @@ while running:
     ui.midpressed = keys[pygame.K_s]
     ui.rightpressed = keys[pygame.K_d]
 
+    if ui.leftpressed and not previous_left:
+        water.activate_jet("left")
+    if ui.midpressed and not previous_middle:
+        water.activate_jet("middle")
+    if ui.rightpressed and not previous_right:
+        water.activate_jet("right")
+
+    previous_left = ui.leftpressed
+    previous_middle = ui.midpressed
+    previous_right = ui.rightpressed
+
+    water.update(dt)
+
     ui.update(dt) 
 
     if ui.state == "playing":
@@ -85,6 +102,8 @@ while running:
     physics.update(rings, dt)
 
     screen.blit(ui.background_image, (0, 0))
+
+    water.draw(screen)
 
     tank.draw(screen)
 
