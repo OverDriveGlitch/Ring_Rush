@@ -44,13 +44,18 @@ clock = pygame.time.Clock()
 running = True
 while running:
 
-    screen.fill((255,255,255))
-
     # dt = delta time since last frame, limits fps to 60
     dt = clock.tick(FPS) / 1000 
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            running = False
+        elif event.key == pygame.K_SPACE and ui_state =="start":
+            ui.start_round()
+        elif event.key == pygame.K_r and ui_state =="game over":
+            ui.start_round()
+
+        elif event.key == pygame.K_ESCAPE:
             running = False
 
 # STEP 5: HANDLE INPUT
