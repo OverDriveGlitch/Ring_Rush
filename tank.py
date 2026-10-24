@@ -22,12 +22,13 @@ class Tank:
       (self.x + self.width // 2, self.y + self.height // 4),
       (self.x + self.width * 3 // 4, self.y + self.height * 3 // 5)
     ]
-    assets_folder = Path(__file__).resolve().parent / "assets"
+    pic_folder = Path(__file__).resolve().parent / "pic"
     self.tank_image = pygame.image.load(
-      str(assets_folder / "tank.png")
+      str(pic_folder / "Ring_Rush.png")
     ).convert_alpha()
 
 
+  pass
 
   
 

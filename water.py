@@ -1,7 +1,17 @@
+import settings
+import pygame
+
+
 # STEP 1: IMPORTS
 # Import Pygame and the shared values from settings.py.
 
 # STEP 2: CREATE THE Water CLASS
+class Water:
+    def__init__(self, tank)
+Water
+    
+
+
 # Define Water.__init__(self).
 # Store whether the jet is active.
 # Store how much time remains before the jet switches off.
