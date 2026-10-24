@@ -27,8 +27,10 @@ screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 # Hint: Use a loop to create multiple rings rather than repeating code.
 
 tank = Tank()
-physics = Physics()
+physics = Physics(tank)
 ui = UI()
+
+ui.draw(screen)
 
 
 # STEP 4: START THE GAME LOOP
