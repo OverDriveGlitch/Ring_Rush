@@ -1,14 +1,24 @@
 import settings
 import pygame
+import pymunk 
 
+bottom_of_tank = 20
 
 # STEP 1: IMPORTS
 # Import Pygame and the shared values from settings.py.
 
 # STEP 2: CREATE THE Water CLASS
 class Water:
-    def__init__(self, tank)
-Water
+    def __init__(self, tank):
+        self.tank = tank
+
+        self.left_active = False
+        self.middle_active = False
+        self.right_active = False
+
+        self.jet_y = self.tank.y + self.tank.height - bottom_of_tank
+
+        
     
 
 

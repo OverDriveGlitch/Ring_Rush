@@ -46,6 +46,18 @@ class Physics:
       (settings.RIGHT_TANK, settings.BOTTOM_TANK),
       5
     )
+
+    #Friction adds resistance that it has with the wall
+    wall_left.friction = 0.5
+    wall_top.friction = 0.5
+    wall_right.friction = 0.5
+    wall_bottom.friction = 0.5
+    #Elasticity makes the rings bounce when it toaches the wall
+    wall_left.elasticity = 0.3
+    wall_top.elasticity = 0.3
+    wall_right.elasticity = 0.3
+    wall_bottom.elasticity = 0.3
+
     self.space.add(wall_left, wall_right, wall_bottom, wall_top) #this adds the walls to the collision calculations that pymuck has to do
     
     # Add collision shapes for the pegs using the positions in tank.pegs.
@@ -67,6 +79,14 @@ class Physics:
         settings.RING_RAD,
         (settings.P3_X1+(settings.P3_X1-settings.P3_X2), settings.P3_Y1+(settings.P3_Y1-settings.P3_Y2))
       )
+    #Friction adds resistance that it has with the wall
+    peg_shape1.friction = 0.5
+    peg_shape2.friction = 0.5
+    peg_shape3.friction = 0.5
+    #Elasticity makes the rings bounce when it toaches the peg
+    peg_shape1.elasticity = 0.5
+    peg_shape2.elasticity = 0.5
+    peg_shape3.elasticity = 0.5
 
     self.space.add(peg_shape1, peg_shape2, peg_shape3)
   
@@ -87,6 +107,8 @@ class Physics:
     #starts the physics body at the ring's current position.
     shape = pymunk.Circle(body, settings.RING_RAD)#collision space is circular
     # Add the body and shape to the physics world
+    shape.friction = 0.5
+    shape.elasticity = 0.3
     self.space.add(body, shape)
     ring.body = body #adds the body back to ring object
 
@@ -102,6 +124,20 @@ class Physics:
 # Hint: Use Pymunk collision handlers or carefully designed overlap checks.
 # Do not advance the simulation by a fixed amount if frame times vary.
   def update(self, rings, water, dt):
+    #applies upward force to simulate bouyancy
+    for ring in rings:
+        if ring.body is not None:
+            body=ring.body
+
+            ring.body.apply_force_at_local_point(
+                (0, -ring.body.mass * 700),
+                (0, 0)
+            )
+            # Reduce horizontal and vertical velocity gradually
+            body.velocity = (
+                body.velocity.x * 0.99,
+                body.velocity.y * 0.99
+            )
     #using the pymunk advance simulation by dt seconds 
     self.space.step(dt)
     # updates the rings position with the current
@@ -110,7 +146,7 @@ class Physics:
             ring.x = ring.body.position.x
             ring.y = ring.body.position.y
     # retuns the updated score
-    return 0
+    return self.check_scoring(rings)
 
 # STEP 5: APPLY WATER FORCES
 # Only push rings that are within the jet's affected region.
@@ -118,6 +154,12 @@ class Physics:
 # Apply force over time for a sustained push, or an impulse for a quick kick.
 # Make sure the visual jet and the physical force agree.
 # Hint: A jet that pushes every ring equally will feel less convincing.
+  def apply_water_force(self, ring, force_x, force_y):
+    if ring.body is not None:
+        ring.body.apply_force_at_local_point(
+            (force_x, force_y),
+            (0, 0)
+        )
 
 
 # STEP 6: SIMULATE FLOATING
@@ -126,9 +168,11 @@ class Physics:
 # Tune these forces until the rings feel responsive rather than weightless.
 # Remember: Pymunk does not automatically simulate real fluid dynamics.
 
+
 # STEP 7: DETECT SUCCESSFUL RING PLACEMENTS
 # Determine when a ring has moved over a peg and is properly settled.
 # Consider the ring's inner opening, the peg position, and the ring's motion.
 # A simple circle overlap alone is not enough to guarantee a valid landing.
 # Mark a successful ring so it cannot score again.
 # Return points only when a ring newly scores.
+
