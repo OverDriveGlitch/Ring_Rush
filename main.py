@@ -35,7 +35,7 @@ water = Water(tank)
 
 rings = []
 for i in range(NUM_RINGS):
-    ring = Ring(300, 400)  # placeholder position for the ring
+    ring = Ring(280 + i * 70, 150)  # placeholder position for the ring
     physics.add_ring(ring)
     rings.append(ring)
 
@@ -75,14 +75,21 @@ while running:
 
     ui.update(dt) 
 
+    if ui.state == "playing":
+        for ring in rings:
+            ring.draw(screen)
+
     # WILL MAKE RINGS MOVE IN WATER
     # water.update(dt)
     physics.update(rings, dt)
 
     screen.blit(ui.background_image, (0, 0))
 
+    tank.draw(screen)
+    
     for ring in rings:
         ring.draw(screen)
+
 
     # draw menus
     ui.draw(screen)
