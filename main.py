@@ -14,7 +14,7 @@ from ui import UI
 # Set the window title.
 # Create a clock to control FPS and calculate dt.
 
-pygame.init()
+pygame.init() #jfienf
 
 #setting up screen
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
