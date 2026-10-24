@@ -25,7 +25,7 @@ class UI:
     self.background_image = pygame.image.load("pic/Ring_Rush.png")
     pygame.display.set_caption("Ring Rush") #title of the window
     pygame.font.init()
-    self.game_font = pygame.font.SysFont("Arial", 24)
+    self.game_font = pygame.font.SysFont("arialrounded", 24)
     self.button_image = pygame.transform.scale(self.button_image, (175,175))
 
    
@@ -74,18 +74,16 @@ class UI:
       elif self.state == "game_over":
            screen.blit(self.end_image,(0,0))
            return
-      score_text = f"Score: {self.score}"
-      time_text = f"Time remaning is: {self.remaining_time:.0f}"
-      score_surface = self.game_font.render(score_text, True, "white")
-      time_surface = self.game_font.render(time_text, True, "white")
+      score_text = f"SCORE: {self.score}"
+      time_text = f"TIME REMAINING\n IS: {self.remaining_time:.0f}"
+      score_surface = self.game_font.render(score_text, True, "white", (204, 85, 0))
+      time_surface = self.game_font.render(time_text, True, "white", (204, 85, 0))
     # Draw the current score and remaining time.
-      screen.blit(score_surface, (100,100))
-      screen.blit(time_surface,(100,200))
+      screen.blit(score_surface, (50,100))
+      screen.blit(time_surface,(20,200))
     # Draw instructions or prompts when appropriate.
-      instruction_text = "Put all the rings inside the hooks"
-      instruction_surface = self.game_font.render(instruction_text, True, "white")
-      screen.blit(instruction_surface, (450, 20))
-    
+      
+  
       #if a button is pressed then the image will change
       """
       IF WE HAVE TIME CHANGE THIS BUTTON PLS OMG ITS BAD
