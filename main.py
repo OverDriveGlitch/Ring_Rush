@@ -67,6 +67,8 @@ while running:
     # draw menus
     ui.draw(screen)
 
+    pygame.display.flip()
+
 # STEP 5: HANDLE INPUT
 # Handle the window-close event.
 # Detect the agreed key or button for activating the water jet.
