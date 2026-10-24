@@ -7,6 +7,7 @@ from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
 from tank import Tank
 from physics import Physics
 from ui import UI
+from ring import Ring 
 
 # STEP 2: INITIALIZE PYGAME
 # Initialize Pygame.
@@ -44,6 +45,7 @@ while running:
 
     # dt = delta time since last frame, limits fps to 60
     dt = clock.tick(FPS) / 1000 
+
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -52,13 +54,16 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and ui.state =="start":
                 ui.start_round()
-            elif event.key == pygame.K_r and ui.state =="game over":
+            elif event.key == pygame.K_r and ui.state =="game_over":
                 ui.start_round()
 
             elif event.key == pygame.K_ESCAPE:
                 running = False
+    
+    keys = pygame.key.get_pressed()
+    ui.leftpressed = keys[pygame.K_a]
 
-    ui.update(dt)
+    ui.update(dt) 
 
     screen.blit(ui.background_image, (0, 0))
 
@@ -75,7 +80,11 @@ while running:
 # Handle start, restart, and exit inputs as appropriate.
 # Avoid placing the physics calculations directly inside event handling.
 
-keys = pygame.key.get_pressed()
+    #elif keys[pygame.K_d]:
+     #   ui.rightpressed = True
+    #elif keys[pygame.K_s]:
+     #   ui.midpressed = True
+
 
     
 
