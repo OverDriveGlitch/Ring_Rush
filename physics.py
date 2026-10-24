@@ -67,6 +67,8 @@ class Physics:
         settings.RING_RAD,
         (settings.P3_X1+(settings.P3_X1-settings.P3_X2), settings.P3_Y1+(settings.P3_Y1-settings.P3_Y2))
       )
+
+    self.space.add(peg_shape1, peg_shape2, peg_shape3)
   
 
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
@@ -83,6 +85,10 @@ class Physics:
     #creates the ring's physics body using its mass and rotational movement
     body.position = (ring.x, ring.y)
     #starts the physics body at the ring's current position.
+    shape = pymunk.Circle(body, settings.RING_RAD)#collision space is circular
+    # Add the body and shape to the physics world
+    self.space.add(body, shape)
+    ring.body = body #adds the body back to ring object
 
 # STEP 4: DEFINE physics.update(self, rings, water, dt)
 # This function is called once per game frame by main.py.

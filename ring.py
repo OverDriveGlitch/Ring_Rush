@@ -1,5 +1,8 @@
 # STEP 1: IMPORTS
 # Import Pygame for drawing and settings.py for shared constants.
+import pygame
+import pymunk
+import settings
 
 # STEP 2: CREATE THE Ring CLASS
 # Define Ring.__init__(self, x, y).
@@ -10,6 +13,28 @@
 # Add an is_landed flag to track whether the ring has scored.
 # Add an is_scored flag so the same ring cannot score repeatedly.
 # If using Pymunk, store or reference the corresponding physics body.
+class Ring:
+    def __init__(self, x,y,image):
+        #storing the starting spot of the ring
+        self.x=x
+        self.y=y
+
+        #storing velocit
+        self.vx=0
+        self.vy=0
+
+        # storing radius and color
+        self.rad = settings.RING_RAD
+        self.clr = (255, 0, 0)
+        
+        # connecting body in physics.py
+        self.body = None
+
+        #tracking if it lands or scores
+        self.it_lands=False
+        self.it_scores=False
+
+
 
 # STEP 3: CREATE ring.draw(self, screen)
 def ring(self,screen):
@@ -18,6 +43,7 @@ def ring(self,screen):
 # Hint: pygame.draw.circle() can draw a ring outline using a width value.
 # Convert floating-point coordinates to integers when drawing.
 # The drawing position must match the physics body's position.
+
 
 # STEP 4: DECIDE HOW LANDED RINGS WORK
 # A landed ring should not continue moving freely as if it were floating.
