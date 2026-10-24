@@ -175,4 +175,27 @@ class Physics:
 # A simple circle overlap alone is not enough to guarantee a valid landing.
 # Mark a successful ring so it cannot score again.
 # Return points only when a ring newly scores.
+  
+  def check_scoring(self, rings):
+    points = 0
+    for ring in rings:
+        if ring.body is None or ring.it_scores:
+            continue
+        ring_position = ring.body.position
+        ring_velocity = ring.body.velocity
+        for peg_position in self.peg_positions:
+            dx = ring_position.x - peg_position.x
+            dy = ring_position.y - peg_position.y
+            distance = (dx * dx + dy * dy) ** 0.5
+            # Temporary check for a ring settled beside a peg
+            target_distance = settings.RING_RAD * 2
+            tolerance = 5
+            speed = (ring_velocity.x ** 2 + ring_velocity.y ** 2) ** 0.5
+            if (abs(distance - target_distance) <= tolerance and speed < 20):
+                ring.it_lands = True
+                ring.it_scores = True
+                points += 1
+                break
+
+    return points
 
