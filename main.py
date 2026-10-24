@@ -3,7 +3,7 @@
 
 import pygame
 import pymunk
-from settings import SCREEN_LENGTH, SCREEN_HEIGHT, FPS
+from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
 
 # STEP 2: INITIALIZE PYGAME
 # Initialize Pygame.
@@ -14,7 +14,7 @@ from settings import SCREEN_LENGTH, SCREEN_HEIGHT, FPS
 pygame.init()
 
 #setting up screen
-screen = pygame.display([[SCREEN_LENGTH, SCREEN_HEIGHT]])
+screen = pygame.display([[SCREEN_WIDTH, SCREEN_HEIGHT]])
 
 # STEP 3: CREATE THE GAME OBJECTS
 # Create one Tank object first so its peg positions are available.

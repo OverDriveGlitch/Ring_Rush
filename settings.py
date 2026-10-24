@@ -6,13 +6,16 @@ import pymunk
 # Hint: Pygame coordinates start at (0, 0) in the top-left corner.
 # x increases to the right; y increases downward.
 
-SCREEN_LENGTH = 900
+SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 600
 FPS = 60
 
 # STEP 2: TANK SETTINGS
 # Define the left, right, top, and bottom boundaries of the tank.
 # The tank drawing and physics collision boundaries must use the same values.
+
+TANK_WIDTH = 347
+TANK_HEIGHT = 300
 
 LEFT_TANK = 290
 RIGHT_TANK = 637
@@ -31,7 +34,7 @@ RING_MASS = 1
 # Define water jet strength, jet duration, and water particle settings.
 # Tune these values through testing rather than guessing the final values.
 
-JET_STR = 1.5
+JET_STRENGTH = 500
 JET_TIME = 0.7
 
 
@@ -40,8 +43,8 @@ JET_TIME = 0.7
 # If using Pymunk, check its expected units and keep your units consistent.
 # Positions: pixels; velocities: pixels per second; dt: seconds.
 
-GRAVITY = 0.5
-WATER_DRAG = 0.1
+GRAVITY = 500
+WATER_DRAG = 0.7
 BUOYANCY = 0.5
 
 # STEP 6: GAME SETTINGS
@@ -49,5 +52,5 @@ BUOYANCY = 0.5
 # Import these constants into other files instead of duplicating the values.
 
 ROUND_TIME = 180
-SCORE = 0
+STARTING_SCORE = 0
 RING_POINTS = 50
