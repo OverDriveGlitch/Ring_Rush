@@ -50,11 +50,24 @@ class Physics:
     
   # Add collision shapes for the pegs using the positions in tank.pegs.
   
-  peg_shape = pymunk.Circle(
+  peg_shape1 = pymunk.Circle(
     self.space.static_body,
     8,
-    (x, y)
-)
+    (settings.P_X1+(settings.P_X1-settings.P_X2), settings.P_Y1+(settings.P_Y1-settings.P_Y2))
+  )
+
+  peg_shape2 = pymunk.Circle(
+      self.space.static_body,
+      8,
+      (settings.P2_X1+(settings.P2_X2-settings.P2_X2), settings.P2_Y1+(settings.P2_Y1-settings.P2_Y2))
+    )
+
+  peg_shape3 = pymunk.Circle(
+      self.space.static_body,
+      8,
+      (settings.P3_X1+(settings.P3_X1-settings.P3_X2), settings.P3_Y1+(settings.P3_Y1-settings.P3_Y2))
+    )
+  
   #fjkjhdkjfk
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
 # Create a physics body and collision shape for each ring.

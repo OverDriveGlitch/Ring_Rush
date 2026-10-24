@@ -4,6 +4,7 @@
 import pygame
 import pymunk
 from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
+from tank import tank
 
 # STEP 2: INITIALIZE PYGAME
 # Initialize Pygame.
@@ -14,7 +15,7 @@ from settings import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
 pygame.init()
 
 #setting up screen
-screen = pygame.display.set_mode([[SCREEN_WIDTH, SCREEN_HEIGHT]])
+screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 
 # STEP 3: CREATE THE GAME OBJECTS
 # Create one Tank object first so its peg positions are available.
@@ -23,6 +24,7 @@ screen = pygame.display.set_mode([[SCREEN_WIDTH, SCREEN_HEIGHT]])
 # Create the starting rings and add their physics bodies.
 # Hint: Use a loop to create multiple rings rather than repeating code.
 
+game_tank = tank()
 
 # STEP 4: START THE GAME LOOP
 # Continue until the player closes the window.
@@ -63,6 +65,8 @@ while running:
 # Draw the water effects.
 # Draw the score, timer, and current screen.
 # Update the display after all drawing is complete.
+
+screen.fill("blue")
 
 # STEP 8: END THE GAME
 # Exit the game loop when requested.
