@@ -77,7 +77,7 @@ while running:
 # Avoid placing the physics calculations directly inside event handling.
 
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_w]:
+    if keys[pygame.K_a]:
         ui.leftpressed = True
     #elif keys[pygame.K_d]:
      #   ui.rightpressed = True
