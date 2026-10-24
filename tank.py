@@ -11,11 +11,17 @@ import settings
 # Make the peg positions accessible to physics.py.
 class tank: 
   def __init__(self):
-    self.x = settings.SCREEN_WIDTH - settings.TANK_WIDTH // 2
-    self.y = settings.SCREEN_HEIGHT - settings.TANK_HEIGHT // 2
+    self.x = (settings.SCREEN_WIDTH - settings.TANK_WIDTH) // 2
+    self.y = (settings.SCREEN_HEIGHT - settings.TANK_HEIGHT) // 2
     self.width = settings.TANK_WIDTH
     self.height = settings.TANK_HEIGHT
+    self.peg_positions = [
+      (self.x + self.width // 4, self.y + self.height // 2),
+      (self.x + self.width // 2, self.y + self.height // 4),
+      (self.x + self.width * 3 // 4, self.y + self.height * 3 // 5)
+    ]
 
+  
 
 # STEP 3: DEFINE tank.draw(self, screen)
 # Draw the tank outline and its boundaries.
