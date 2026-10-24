@@ -123,7 +123,7 @@ class Physics:
 # Return the number of newly earned points for this frame.
 # Hint: Use Pymunk collision handlers or carefully designed overlap checks.
 # Do not advance the simulation by a fixed amount if frame times vary.
-  def update(self, rings, water, dt):
+  def update(self, rings, dt):
     #applies upward force to simulate bouyancy
     for ring in rings:
         if ring.body is not None:
