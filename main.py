@@ -38,6 +38,8 @@ for i in range(NUM_RINGS):
     ring = Ring(300, 400)  # placeholder position for the ring
     physics.add_ring(ring)
     rings.append(ring)
+    ring.draw(screen)
+
 
 # STEP 4: START THE GAME LOOP
 # Continue until the player closes the window.
@@ -77,7 +79,7 @@ while running:
     screen.blit(ui.background_image, (0, 0))
 
     # TANK AND RING DRAWING HERE
-    ring.draw(screen)
+    # ring.draw(screen)
 
     # draw menus
     ui.draw(screen)
