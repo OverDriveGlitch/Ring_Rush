@@ -86,7 +86,7 @@ while running:
     screen.blit(ui.background_image, (0, 0))
 
     tank.draw(screen)
-    
+
     for ring in rings:
         ring.draw(screen)
 
