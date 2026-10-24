@@ -89,6 +89,12 @@ class Physics:
     peg_shape3.elasticity = 0.5
 
     self.space.add(peg_shape1, peg_shape2, peg_shape3)
+    
+    self.peg_positions = [
+    peg_shape1.offset,
+    peg_shape2.offset,
+    peg_shape3.offset
+    ]
   
 
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
