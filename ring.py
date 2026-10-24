@@ -14,7 +14,7 @@ import settings
 # Add an is_scored flag so the same ring cannot score repeatedly.
 # If using Pymunk, store or reference the corresponding physics body.
 class Ring:
-    def __init__(self, x,y,image):
+    def __init__(self, x,y):
         #storing the starting spot of the ring
         self.x=x
         self.y=y
@@ -51,7 +51,7 @@ class Ring:
         # Draw a hollow ring
         #draw.circle(where, color, position, radius, thickness)
         pygame.draw.circle(
-            screen,self.colour,(int(x), int(y)),self.radius,4
+            screen,self.clr,(int(x), int(y)),self.rad,4
         )
 
 
