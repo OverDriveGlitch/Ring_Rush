@@ -1,11 +1,20 @@
 # STEP 1: IMPORT THE MODULES
 # Import Pygame, settings.py, Ring, Physics, Water, Tank, and UI.
 
+import pygame
+import pymunk
+from settings import SCREEN_LENGTH, SCREEN_HEIGHT, FPS
+
 # STEP 2: INITIALIZE PYGAME
 # Initialize Pygame.
 # Create the game window using the shared screen dimensions.
 # Set the window title.
 # Create a clock to control FPS and calculate dt.
+
+pygame.init()
+
+#setting up screen
+screen = pygame.display([[SCREEN_LENGTH, SCREEN_HEIGHT]])
 
 # STEP 3: CREATE THE GAME OBJECTS
 # Create one Tank object first so its peg positions are available.
