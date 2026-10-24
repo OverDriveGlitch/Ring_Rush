@@ -2,6 +2,8 @@ import settings
 import pygame
 import pymunk 
 
+bottom_of_tank = 20
+
 # STEP 1: IMPORTS
 # Import Pygame and the shared values from settings.py.
 
@@ -14,7 +16,9 @@ class Water:
         self.middle_active = False
         self.right_active = False
 
-        (self.x + self.width) // 2
+        self.jet_y = self.tank.y + self.tank.height - bottom_of_tank
+
+        
     
 
 
