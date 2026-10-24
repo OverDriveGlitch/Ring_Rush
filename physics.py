@@ -52,19 +52,19 @@ class Physics:
   
     peg_shape1 = pymunk.Circle(
       self.space.static_body,
-      2,
+      settings.RING_RAD,
       (settings.P_X1+(settings.P_X1-settings.P_X2), settings.P_Y1+(settings.P_Y1-settings.P_Y2))
     )
 
     peg_shape2 = pymunk.Circle(
         self.space.static_body,
-        2,
+        settings.RING_RAD,
         (settings.P2_X1+(settings.P2_X1-settings.P2_X2), settings.P2_Y1+(settings.P2_Y1-settings.P2_Y2))
       )
 
     peg_shape3 = pymunk.Circle(
         self.space.static_body,
-        2,
+        settings.RING_RAD,
         (settings.P3_X1+(settings.P3_X1-settings.P3_X2), settings.P3_Y1+(settings.P3_Y1-settings.P3_Y2))
       )
   
@@ -77,7 +77,12 @@ class Physics:
 # Hint: Pymunk bodies and shapes are separate objects.
   def add_ring(self, ring):
     #create a physics body for the ring
-    pass
+    moment = pymunk.moment_for_circle(settings.RING_MASS,0,settings.RING_RAD)
+    #calling function moment_for_circle from pymunk and calculates how difficult the ring is to rotate
+    body = pymunk.Body(settings.RING_MASS, moment)
+    #creates the ring's physics body using its mass and rotational movement
+    body.position = (ring.x, ring.y)
+    #starts the physics body at the ring's current position.
 
 # STEP 4: DEFINE physics.update(self, rings, water, dt)
 # This function is called once per game frame by main.py.

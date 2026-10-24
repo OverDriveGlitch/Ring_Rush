@@ -12,6 +12,8 @@
 # If using Pymunk, store or reference the corresponding physics body.
 
 # STEP 3: CREATE ring.draw(self, screen)
+def ring(self,screen):
+    
 # Draw the ring on the Pygame screen using its current position.
 # Hint: pygame.draw.circle() can draw a ring outline using a width value.
 # Convert floating-point coordinates to integers when drawing.
