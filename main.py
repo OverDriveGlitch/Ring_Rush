@@ -84,6 +84,8 @@ while running:
     for ring in rings:
         ring.draw(screen)
 
+    tank.draw(screen)
+    
     # draw menus
     ui.draw(screen)
 
