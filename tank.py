@@ -28,7 +28,24 @@ class Tank:
     ).convert_alpha()
 
 
-  pass
+  def draw(self, screen):
+    screen.blit(self.tank_image, (0,0))
+
+    for x, y in self.peg_positions:
+      pygame.draw.line(
+        screen,
+        (255, 105, 180),
+        (x, self.y + 15),
+        (x,y),
+        6
+      )
+      pygame.draw.circle(
+        screen,
+        (255, 105, 180),
+        (x, y),
+        10
+      )
+
 
   
 

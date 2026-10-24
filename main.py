@@ -50,13 +50,15 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.key == pygame.K_SPACE and ui_state =="start":
-            ui.start_round()
-        elif event.key == pygame.K_r and ui_state =="game over":
-            ui.start_round()
 
-        elif event.key == pygame.K_ESCAPE:
-            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE and ui.state =="start":
+                ui.start_round()
+            elif event.key == pygame.K_r and ui.state =="game over":
+                ui.start_round()
+
+            elif event.key == pygame.K_ESCAPE:
+                running = False
 
 # STEP 5: HANDLE INPUT
 # Handle the window-close event.
