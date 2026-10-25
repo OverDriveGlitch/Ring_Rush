@@ -4,7 +4,6 @@
 import pygame
 import pymunk
 import settings
-import tank
 # STEP 2: CREATE THE Physics CLASS
 # Define Physics.__init__(self, tank).
 # Create the physics space if using Pymunk.
