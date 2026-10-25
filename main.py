@@ -115,12 +115,9 @@ while running:
         ui.add_score(points)
 
    
-<<<<<<< HEAD
 
-=======
     #calls each function with screen "ablities"
     water.draw(screen)
->>>>>>> 6b4204c7a4b7f925cad4b63b48002138e73d1310
 
     tank.draw(screen)
 
