@@ -15,7 +15,6 @@ bottom_of_tank = 20
 class Water:
     def __init__(self, tank):
         self.tank = tank
-
         self.left_active = False
         self.middle_active = False
         self.right_active = False
@@ -28,7 +27,8 @@ class Water:
 
         """jet timers"""
         self.jet_duration = 0.25
-
+        self.jet_cooldown = 0.4 # seconds between activations
+        self.cooldowns = {"left": 0.0, "middle": 0.0, "right": 0.0}
         self.left_timer = 0.0
         self.middle_timer = 0.0
         self.right_timer = 0.0
@@ -36,6 +36,11 @@ class Water:
         self.particles = [] 
 
     def activate_jet(self, jet_name):
+        if jet_name not in self.cooldowns:
+            return
+        if self.cooldowns[jet_name] > 0:
+            return
+        self.cooldowns[jet_name] = self.jet_cooldown
         if jet_name == "left":
             self.left_active = True
             self.left_timer = self.jet_duration 
@@ -45,9 +50,23 @@ class Water:
         elif jet_name == "right":
             self.right_active = True 
             self.right_timer = self.jet_duration 
+    def spawn_particles(self, x):
+        for i in range(settings.PARTICLE_COUNT):
+            angle = math.radians(-90 + random.uniform(-settings.PARTICLE_SPREAD, settings.PARTICLE_SPREAD))
+            speed = settings.PARTICLE_SPEED * random.uniform(0.8, 1.2)
+            self.particles.append({
+                "x": x + random.uniform(-6, 6),
+                "y": self.jet_y,
+                "vx": math.cos(angle) * speed,
+                "vy": math.sin(angle) * speed,
+                "life": settings.PARTICLE_LIFETIME,
+            })
 
     """Creates the method that updates the water jet as time passes"""
     def update(self, dt):
+        for jet_name in self.cooldowns:
+                self.cooldowns[jet_name] = max(0, self.cooldowns[jet_name] - dt)
+        
         if self.left_active:
             self.left_timer -= dt
 
@@ -109,42 +128,22 @@ class Water:
 # Keep drawing separate from movement and physics calculations.
     # STEP 5: DRAW THE WATER JETS
     def draw(self, screen):
-        jet_bottom = self.jet_y
-        jet_height = 100
-        # Draw the left water jet
-        if self.left_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 50)
-            pygame.draw.line(screen, (180, 240, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 48)
-        # Draw the middle water jet
-        if self.middle_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 50)
-            pygame.draw.line(screen, (180, 240, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 48)
-        # Draw the right water jet
-        if self.right_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 50)
-            pygame.draw.line(screen, (180, 240, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 48)
         for p in self.particles:
             pygame.draw.circle(
-            screen,
-            settings.PARTICLE_COLOR,
-            (int(p["x"]), int(p["y"])),
-            settings.PARTICLE_RADIUS
-        )
+                screen,
+                settings.PARTICLE_COLOR,
+                (int(p["x"]), int(p["y"])),
+                settings.PARTICLE_RADIUS,
+                1
+            )
 
-
-        def spawn_particles(self, x):
-            for i in range(settings.PARTICLE_COUNT):
-                angle = math.radians(-90 + random.uniform(-settings.PARTICLE_SPREAD, settings.PARTICLE_SPREAD))
-                speed = settings.PARTICLE_SPEED * random.uniform(0.8, 1.2)
-                self.particles.append({
-                    "x": x + random.uniform(-6, 6),
-                    "y": self.jet_y,
-                    "vx": math.cos(angle) * speed,
-                    "vy": math.sin(angle) * speed,
-                    "life": settings.PARTICLE_LIFETIME,
-                })
-
-
+        self.particles = [
+            p for p in self.particles 
+            if p["life"] > 0
+            and settings.LEFT_TANK < p["x"] < settings.RIGHT_TANK
+            and settings.TOP_TANK < p["y"] < settings.BOTTOM_TANK
+        ]
+#hello
 # STEP 6: EXPOSE THE JET STATE
 # Provide a consistent way for physics.py to check whether a jet is active.
 # Keep the jet position, direction, and affected region accessible.

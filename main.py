@@ -39,7 +39,9 @@ water = Water(tank)
 
 rings = []
 for i in range(NUM_RINGS):
-    ring = Ring(280 + i * 70, 100)
+    # changes postition of each ring
+    ring = Ring(400 + i * 70, 100)
+    #changes colour of each ring by one
     ring.clr = (255 - (30 * i), 90 + (50 * i), 40)
     physics.add_ring(ring)
     rings.append(ring)
@@ -72,12 +74,13 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and ui.state =="start":
                 ui.start_round()
-            elif event.key == pygame.K_r and ui.state =="game_over":
+            elif event.key == pygame.K_r and ui.state in ("game_over", "win"):
                 ui.start_round()
+
 
             elif event.key == pygame.K_ESCAPE:
                 running = False
-    
+    #receives input by every key and distrubes to both the button 
     keys = pygame.key.get_pressed()
     ui.leftpressed = keys[pygame.K_a]
     ui.midpressed = keys[pygame.K_s]
@@ -97,7 +100,7 @@ while running:
     screen.blit(ui.background_image, (0, 0))
 
     water.update(dt)
-
+    
     ui.update(dt) 
 
     if ui.state == "playing":
@@ -108,11 +111,12 @@ while running:
 
     # water.update(dt)
     if ui.state == "playing":
-        physics.update(rings, water, dt)
-        #ui.add_score(points)
+        points = physics.update(rings, water, dt)
+        ui.add_score(points)
 
    
 
+    #calls each function with screen "ablities"
     water.draw(screen)
 
     tank.draw(screen)
@@ -122,7 +126,11 @@ while running:
 
 
     # draw menus
+
+    water.draw(screen)
+    
     ui.draw(screen)
+
 
     pygame.display.flip()
 

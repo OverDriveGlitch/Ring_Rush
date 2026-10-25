@@ -14,6 +14,7 @@ GAME_WIDTH = 900
 # Define UI.__init__(self).
 class UI:
   def __init__(self, button_sound):
+    #bascially just loads all the images from our files
     self.button_sound=button_sound
     self.remaining_time = settings.ROUND_TIME
     self.state = "start"
@@ -27,24 +28,19 @@ class UI:
     pygame.font.init()
     self.game_font = pygame.font.SysFont("arialrounded", 24)
     self.button_image = pygame.transform.scale(self.button_image, (175,175))
-
+    self.win_image = pygame.image.load("pic/Win.png")
+    self.win_image = pygame.transform.scale(self.win_image, (900, 600))
    
-    # Store the current score.
-
-    # Store the remaining time in the round.
-  
-        
-    # Create fonts for text.
-    # Store the current game state, such as start, playing, or game over.
-    # Hint: Use one clearly defined set of game-state names.
-  
-
-
-
+    
     # STEP 3: DEFINE ui.add_score(self, points)
+  
   def add_score(self, points):
+      #once game starts playing it'll start tracking the score
       if self.state == "playing" and points > 0: 
         self.score += points
+        #win condition
+        if self.score >= 150:
+            self.state = "win"
       
     # Increase the score by the points received from main.py.
 
@@ -67,6 +63,7 @@ class UI:
     # Hint: Store time in seconds and use dt.
 
     # STEP 5: DEFINE ui.draw(self, screen)
+  #prints the 3 different scenarios onto main
   def draw(self, screen):
       if self.state == "start":
           screen.blit(self.start_image, (0,0))
@@ -74,6 +71,9 @@ class UI:
       elif self.state == "game_over":
            screen.blit(self.end_image,(0,0))
            return
+      if self.state == "win":
+          screen.blit(self.win_image,(0,0))
+          return
       score_text = f"SCORE: {self.score}"
       time_text = f"TIME REMAINING: {self.remaining_time:.0f}"
       score_surface = self.game_font.render(score_text, True, "white", (204, 85, 0))
@@ -111,9 +111,5 @@ class UI:
         # if that makes the code easier to organize.
     # Agree with main.py on how the player starts and restarts a round.
   
-    # STEP 7: TEST THE UI
-    # Check that the score increases when main.py reports earned points.
-    # Check that the timer stops when the round ends.
-    # Check that restarting resets the score and timer correctly.
-
+   
 

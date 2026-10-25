@@ -33,7 +33,7 @@ RIGHT_BUTTON = 588
 # Define the starting number of rings, their radius, and their mass.
 # Keep the mass consistent with the physics system if using Pymunk.
 
-NUM_RINGS = 4
+NUM_RINGS = 3
 RING_RAD = 18
 RING_MASS = 1 
 
@@ -45,11 +45,11 @@ JET_STRENGTH = 500
 JET_TIME = 0.7
 
 PARTICLE_COUNT = 5           # new particles spawned per frame while jet is on
-PARTICLE_SPEED = 250         # pixels per second
+PARTICLE_SPEED = 100         # pixels per second
 PARTICLE_LIFETIME = 0.8      # seconds before a particle disappears
-PARTICLE_RADIUS = 8          # pixels
-PARTICLE_SPREAD = 45         # degrees of random angle variation
-PARTICLE_COLOR = (180, 220, 255)
+PARTICLE_RADIUS = 3          # pixels
+PARTICLE_SPREAD = 90         # degrees of random angle variation
+PARTICLE_COLOR = (180, 240, 255)
 
 # STEP 5: PHYSICS SETTINGS
 # Define gravity, water drag, and approximate buoyancy settings.
