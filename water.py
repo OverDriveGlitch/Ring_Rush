@@ -101,6 +101,18 @@ class Water:
 # Draw bubbles, splashes, and particles.
 # Use colours, transparency effects, or small shapes to suggest water.
 # Keep drawing separate from movement and physics calculations.
+    # STEP 5: DRAW THE WATER JETS
+    def draw(self, screen):
+        jet_bottom = self.jet_y
+        # Draw the left water jet
+        if self.left_active:
+            pygame.draw.line(screen,(100, 200, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - 80),8)
+        # Draw the middle water jet
+        if self.middle_active:
+            pygame.draw.line(screen,(100, 200, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - 80),8)
+        # Draw the right water jet
+        if self.right_active:
+            pygame.draw.line(screen,(100, 200, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - 80),8)
 
 # STEP 6: EXPOSE THE JET STATE
 # Provide a consistent way for physics.py to check whether a jet is active.
@@ -110,3 +122,4 @@ class Water:
 # STEP 7: TEST THE WATER
 # First test that the jet activates and expires correctly.
 # Then check that its visual direction matches the force in physics.py.
+

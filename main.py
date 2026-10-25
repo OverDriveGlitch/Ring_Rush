@@ -98,7 +98,7 @@ while running:
             ring.draw(screen)
 
     # WILL MAKE RINGS MOVE IN WATER
-    # water.update(dt)
+
     physics.update(rings, dt)
 
     screen.blit(ui.background_image, (0, 0))

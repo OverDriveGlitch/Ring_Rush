@@ -54,7 +54,7 @@ class Tank:
       pygame.draw.line(
         screen,
         (50, 255, 24),
-        (x, self.y + 15),
+        (x, y - 45),
         (x,y),
         6
       )
