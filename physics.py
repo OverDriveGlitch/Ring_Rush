@@ -50,10 +50,10 @@ class Physics:
     )
 
     #Friction adds resistance that it has with the wall
-    wall_left.friction = 0.5
-    wall_top.friction = 0.5
-    wall_right.friction = 0.5
-    wall_bottom.friction = 0.5
+    wall_left.friction = settings.WALL_RESISTANCE
+    wall_top.friction = settings.WALL_RESISTANCE
+    wall_right.friction = settings.WALL_RESISTANCE
+    wall_bottom.friction = settings.WALL_RESISTANCE
     #Elasticity makes the rings bounce when it toaches the wall
     wall_left.elasticity = settings.BUOYANCY
     wall_top.elasticity = settings.BUOYANCY
@@ -63,7 +63,7 @@ class Physics:
     self.space.add(wall_left, wall_right, wall_bottom, wall_top) #this adds the walls to the collision calculations that pymuck has to do
     
     # Add collision shapes for the pegs using the positions in tank.pegs.
-  
+    #pymunk.Circle(body, radius, offset), makes the circular collision
     peg_shape1 = pymunk.Circle(self.space.static_body,tank.peg_radius,tank.peg_positions[0])
 
     peg_shape2 = pymunk.Circle(self.space.static_body,tank.peg_radius,tank.peg_positions[1])
@@ -72,8 +72,11 @@ class Physics:
 
     for peg in [peg_shape1, peg_shape2, peg_shape3]:
       peg.sensor = True
-      for peg in[peg_shape1, peg_shape2, peg_shape3]:
-        self.peg_positions = tank.peg_positions
+      #basically this function in pymunk lets you detect overlap without the sensor acting like a obstacle
+      # for peg in[peg_shape1, peg_shape2, peg_shape3]:
+      #   self.peg_positions = tank.peg_positions
+    self.space.add(peg_shape1, peg_shape2, peg_shape3)
+    self.peg_positions = tank.peg_positions
   
 
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
