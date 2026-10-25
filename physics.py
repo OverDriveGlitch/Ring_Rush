@@ -17,12 +17,13 @@ class Physics:
       self: refers to the physics object being created
       tank: dimension and peg positionss.
     """
-    self.tank=tank
+    self.tank=tank 
     self.space=pymunk.Space() #creates a pysical space for the object Pysics
     self.space.gravity=(0,900) #horizontal acceleration is zero and vertical acceleration is 900
 
     # Create static collision shapes for the tank walls.
     #creating a wall that is 900 by 600 and has a static body
+    #A Segment is a line-like collision shape. It has two endpoints and a thickness.
     wall_left=pymunk.Segment(
       self.space.static_body,
       (settings.LEFT_TANK,settings.TOP_TANK),
@@ -54,10 +55,10 @@ class Physics:
     wall_right.friction = 0.5
     wall_bottom.friction = 0.5
     #Elasticity makes the rings bounce when it toaches the wall
-    wall_left.elasticity = 0.3
-    wall_top.elasticity = 0.3
-    wall_right.elasticity = 0.3
-    wall_bottom.elasticity = 0.3
+    wall_left.elasticity = settings.BUOYANCY
+    wall_top.elasticity = settings.BUOYANCY
+    wall_right.elasticity = settings.BUOYANCY
+    wall_bottom.elasticity = settings.BUOYANCY
 
     self.space.add(wall_left, wall_right, wall_bottom, wall_top) #this adds the walls to the collision calculations that pymuck has to do
     
@@ -72,14 +73,6 @@ class Physics:
     for peg in [peg_shape1, peg_shape2, peg_shape3]:
       peg.sensor = True
       for peg in[peg_shape1, peg_shape2, peg_shape3]:
-    
-    # peg_line1 = pymunk.Segment(self.space.static_body,(tank.peg_positions[0][0], tank.peg_positions[0][1] - 45),tank.peg_positions[0],3)
-
-    # peg_line2 = pymunk.Segment(self.space.static_body,(tank.peg_positions[1][0], tank.peg_positions[1][1] - 45),tank.peg_positions[1],3)
-
-    # peg_line3 = pymunk.Segment(self.space.static_body,(tank.peg_positions[2][0], tank.peg_positions[2][1] - 45),tank.peg_positions[2],3)
-
-    # self.space.add(peg_line1, peg_line2, peg_line3)
         self.peg_positions = tank.peg_positions
   
 

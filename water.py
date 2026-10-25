@@ -88,18 +88,6 @@ class Water:
                 self.right_timer = 0
                 self.right_active = False 
 
-
-
-
-
-        
-
-
-
-        
-    
-
-
 # Define Water.__init__(self).
 # Store whether the jet is active.
 # Store how much time remains before the jet switches off.
