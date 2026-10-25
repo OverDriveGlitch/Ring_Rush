@@ -143,8 +143,7 @@ class Water:
             and settings.LEFT_TANK < p["x"] < settings.RIGHT_TANK
             and settings.TOP_TANK < p["y"] < settings.BOTTOM_TANK
         ]
-        )
-
+#hello
 # STEP 6: EXPOSE THE JET STATE
 # Provide a consistent way for physics.py to check whether a jet is active.
 # Keep the jet position, direction, and affected region accessible.
