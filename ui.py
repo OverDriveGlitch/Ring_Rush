@@ -15,7 +15,7 @@ class UI:
     #bascially just loads all the images from our files  
     self.button_sound=button_sound
     self.last_sound_time = 0      # when the sound last played (milliseconds)
-    self.sound_delay = 300 
+    self.sound_delay = 100 
     self.remaining_time = settings.ROUND_TIME
     self.state = "start"
     self.score = settings.STARTING_SCORE
@@ -89,7 +89,7 @@ class UI:
       """
 
       play_sound = False
-      
+
       if self.leftpressed:
         screen.blit(self.button_image, (231, 413))
         play_sound = True
