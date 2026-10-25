@@ -47,9 +47,9 @@ JET_TIME = 0.7
 PARTICLE_COUNT = 5           # new particles spawned per frame while jet is on
 PARTICLE_SPEED = 100         # pixels per second
 PARTICLE_LIFETIME = 0.8      # seconds before a particle disappears
-PARTICLE_RADIUS = 1        # pixels
+PARTICLE_RADIUS = 3          # pixels
 PARTICLE_SPREAD = 90         # degrees of random angle variation
-PARTICLE_COLOR = (139, 43, 28)
+PARTICLE_COLOR = (180, 240, 255)
 
 # STEP 5: PHYSICS SETTINGS
 # Define gravity, water drag, and approximate buoyancy settings.
