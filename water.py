@@ -110,7 +110,7 @@ class Water:
         # Draw the left water jet
         if self.left_active:
             pygame.draw.line(screen, (0, 150, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 50)
-            pygame.draw.line(screen, (180, 240, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 28)
+            pygame.draw.line(screen, (180, 240, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 48)
         # Draw the middle water jet
         if self.middle_active:
             pygame.draw.line(screen, (0, 150, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 50)
