@@ -106,9 +106,6 @@ while running:
         physics.update(rings, water, dt)
         ui.add_score(points)
 
-
-    physics.update(rings, dt)
-
    
 
     water.draw(screen)
