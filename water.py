@@ -109,16 +109,16 @@ class Water:
         jet_height = 100
         # Draw the left water jet
         if self.left_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 18)
-            pygame.draw.line(screen, (180, 240, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 7)
+            pygame.draw.line(screen, (0, 150, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 30)
+            pygame.draw.line(screen, (180, 240, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 12)
         # Draw the middle water jet
         if self.middle_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 18)
-            pygame.draw.line(screen, (180, 240, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 7)
+            pygame.draw.line(screen, (0, 150, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 30)
+            pygame.draw.line(screen, (180, 240, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 12)
         # Draw the right water jet
         if self.right_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 18)
-            pygame.draw.line(screen, (180, 240, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 7)
+            pygame.draw.line(screen, (0, 150, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 30)
+            pygame.draw.line(screen, (180, 240, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 12)
 
 # STEP 6: EXPOSE THE JET STATE
 # Provide a consistent way for physics.py to check whether a jet is active.
