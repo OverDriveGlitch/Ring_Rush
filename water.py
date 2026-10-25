@@ -2,6 +2,8 @@ import settings
 import pygame
 import pymunk 
 
+
+
 bottom_of_tank = 20
 
 # STEP 1: IMPORTS
@@ -18,9 +20,9 @@ class Water:
         """height of the tank"""
         self.jet_y = self.tank.y + self.tank.height - bottom_of_tank
         """jet positions"""
-        self.left_x = self.tank.x + self.tank.width // 4
-        self.middle_x = self.tank.x + self.tank.width // 2
-        self.right_x = self.tank.x + (self.tank.width * 3) // 4
+        self.left_x = settings.LEFT_BUTTON
+        self.middle_x = settings.MIDDLE_BUTTON
+        self.right_x = settings.RIGHT_BUTTON
 
         """jet timers"""
         self.jet_duration = 0.25
@@ -61,7 +63,7 @@ class Water:
 
             if self.right_timer <= 0:
                 self.right_timer = 0
-                self.right_timer = False 
+                self.right_active = False 
 
 
 
@@ -104,15 +106,19 @@ class Water:
     # STEP 5: DRAW THE WATER JETS
     def draw(self, screen):
         jet_bottom = self.jet_y
+        jet_height = 100
         # Draw the left water jet
         if self.left_active:
-            pygame.draw.line(screen,(100, 200, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - 80),8)
+            pygame.draw.line(screen, (0, 150, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 30)
+            pygame.draw.line(screen, (180, 240, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 12)
         # Draw the middle water jet
         if self.middle_active:
-            pygame.draw.line(screen,(100, 200, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - 80),8)
+            pygame.draw.line(screen, (0, 150, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 30)
+            pygame.draw.line(screen, (180, 240, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 12)
         # Draw the right water jet
         if self.right_active:
-            pygame.draw.line(screen,(100, 200, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - 80),8)
+            pygame.draw.line(screen, (0, 150, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 30)
+            pygame.draw.line(screen, (180, 240, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 12)
 
 # STEP 6: EXPOSE THE JET STATE
 # Provide a consistent way for physics.py to check whether a jet is active.
