@@ -32,13 +32,13 @@ class Tank:
     
     the right peg is slightly lower than the left
     
-    the positions are calculated in comparision to the tank"""
+    the positions are calculated in comparision to the tank using variables from the settings file"""
     self.peg_positions = [
       (self.x + self.width // 4, self.y + self.height // 2),
       (self.x + self.width // 2, self.y + self.height // 4),
       (self.x + self.width * 3 // 4, self.y + self.height * 3 // 5),
        ]
-
+    
     """Peg collision radius determines the size of each pegs rounded tip"""
     self.peg_radius = 10
     pic_folder = Path(__file__).resolve().parent / "pic"
