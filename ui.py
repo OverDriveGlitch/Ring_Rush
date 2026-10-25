@@ -3,24 +3,23 @@
 
 
 import pygame
-import os
 import settings
 #images
-GAME_HEIGHT = 600
-GAME_WIDTH = 900
+
 
 
 # STEP 2: CREATE THE UI CLASS
 # Define UI.__init__(self).
 class UI:
   def __init__(self, button_sound):
-    #bascially just loads all the images from our files
+    #bascially just loads all the images from our files  
     self.button_sound=button_sound
+    self.last_sound_time = 0      # when the sound last played (milliseconds)
+    self.sound_delay = 100 
     self.remaining_time = settings.ROUND_TIME
     self.state = "start"
     self.score = settings.STARTING_SCORE
     self.button_image = pygame.image.load("pic/button.png")
-    print("Button image size:", self.button_image.get_size())
     self.end_image = pygame.image.load("pic/End.png")
     self.start_image = pygame.image.load("pic/Start.png")
     self.background_image = pygame.image.load("pic/Ring_Rush.png")
@@ -88,15 +87,23 @@ class UI:
       """
       IF WE HAVE TIME CHANGE THIS BUTTON PLS OMG ITS BAD
       """
+
+      play_sound = False
+
       if self.leftpressed:
-          screen.blit(self.button_image, (231, 413))
-          self.button_sound.play()
+        screen.blit(self.button_image, (231, 413))
+        play_sound = True
       if self.midpressed:
-          screen.blit(self.button_image, (362, 413))
-          self.button_sound.play()
+        screen.blit(self.button_image, (362, 413))
+        play_sound = True
       if self.rightpressed:
-          screen.blit(self.button_image, (501, 413))
-          self.button_sound.play()
+        screen.blit(self.button_image, (501, 413))
+        play_sound = True
+
+      now = pygame.time.get_ticks()
+      if play_sound and now - self.last_sound_time >= self.sound_delay:
+        self.button_sound.play()
+        self.last_sound_time = now
      
     # Draw the start screen or game-over screen based on the game state.
     
