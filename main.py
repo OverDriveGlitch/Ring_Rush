@@ -18,6 +18,10 @@ from water import Water
 
 pygame.init()
 
+pygame.mixer.init()
+
+button_sound = pygame.mixer.Sound("sounds/bubble-sound-effect.mp3")
+
 #setting up screen
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 
@@ -30,7 +34,7 @@ screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 
 tank = Tank()
 physics = Physics(tank)
-ui = UI()
+ui = UI(button_sound)
 water = Water(tank)
 
 rings = []

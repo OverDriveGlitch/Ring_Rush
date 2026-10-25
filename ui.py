@@ -13,8 +13,8 @@ GAME_WIDTH = 900
 # STEP 2: CREATE THE UI CLASS
 # Define UI.__init__(self).
 class UI:
-  def __init__(self):
-    
+  def __init__(self, button_sound):
+    self.button_sound=button_sound
     self.remaining_time = settings.ROUND_TIME
     self.state = "start"
     self.score = settings.STARTING_SCORE
@@ -90,10 +90,13 @@ class UI:
       """
       if self.leftpressed:
           screen.blit(self.button_image, (231, 413))
+          self.button_sound.play()
       if self.midpressed:
           screen.blit(self.button_image, (362, 413))
+          self.button_sound.play()
       if self.rightpressed:
           screen.blit(self.button_image, (501, 413))
+          self.button_sound.play()
      
     # Draw the start screen or game-over screen based on the game state.
     
