@@ -58,6 +58,7 @@ while running:
 
     # dt = delta time since last frame, limits fps to 60
     dt = clock.tick(FPS) / 1000 
+    dt = min(dt, 0.05) 
 
     
     for event in pygame.event.get():

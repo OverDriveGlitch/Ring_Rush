@@ -14,7 +14,7 @@ GAME_WIDTH = 900
 # Define UI.__init__(self).
 class UI:
   def __init__(self):
-    self.leftpressed = False
+    
     self.remaining_time = settings.ROUND_TIME
     self.state = "start"
     self.score = settings.STARTING_SCORE
