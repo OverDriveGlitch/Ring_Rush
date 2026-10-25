@@ -4,6 +4,7 @@
 import pygame
 import pymunk
 import settings
+import tank
 # STEP 2: CREATE THE Physics CLASS
 # Define Physics.__init__(self, tank).
 # Create the physics space if using Pymunk.
@@ -64,37 +65,29 @@ class Physics:
   
     peg_shape1 = pymunk.Circle(
       self.space.static_body,
-      settings.RING_RAD,
-      (settings.P_X1+(settings.P_X1-settings.P_X2), settings.P_Y1+(settings.P_Y1-settings.P_Y2))
+      tank.peg_radius,
+      tank.peg_positions[0]
     )
 
     peg_shape2 = pymunk.Circle(
         self.space.static_body,
-        settings.RING_RAD,
-        (settings.P2_X1+(settings.P2_X1-settings.P2_X2), settings.P2_Y1+(settings.P2_Y1-settings.P2_Y2))
+        tank.peg_radius,
+        tank.peg_positions[1]
       )
 
     peg_shape3 = pymunk.Circle(
         self.space.static_body,
-        settings.RING_RAD,
-        (settings.P3_X1+(settings.P3_X1-settings.P3_X2), settings.P3_Y1+(settings.P3_Y1-settings.P3_Y2))
+        tank.peg_radius,
+        tank.peg_positions[2]
       )
-    #Friction adds resistance that it has with the wall
-    peg_shape1.friction = 0.5
-    peg_shape2.friction = 0.5
-    peg_shape3.friction = 0.5
-    #Elasticity makes the rings bounce when it toaches the peg
-    peg_shape1.elasticity = 0.5
-    peg_shape2.elasticity = 0.5
-    peg_shape3.elasticity = 0.5
+
+    for peg in [peg_shape1, peg_shape2, peg_shape3]:
+            peg.friction = 0.5
+            peg.elasticity = 0.5
 
     self.space.add(peg_shape1, peg_shape2, peg_shape3)
     
-    self.peg_positions = [
-    peg_shape1.offset,
-    peg_shape2.offset,
-    peg_shape3.offset
-    ]
+    self.peg_positions = tank.peg_positions
   
 
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD
