@@ -128,26 +128,21 @@ class Water:
 # Keep drawing separate from movement and physics calculations.
     # STEP 5: DRAW THE WATER JETS
     def draw(self, screen):
-        jet_bottom = self.jet_y
-        jet_height = 100
-        # Draw the left water jet
-        if self.left_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 50)
-            pygame.draw.line(screen, (180, 240, 255),(self.left_x, jet_bottom),(self.left_x, jet_bottom - jet_height), 48)
-        # Draw the middle water jet
-        if self.middle_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 50)
-            pygame.draw.line(screen, (180, 240, 255),(self.middle_x, jet_bottom),(self.middle_x, jet_bottom - jet_height), 48)
-        # Draw the right water jet
-        if self.right_active:
-            pygame.draw.line(screen, (0, 150, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 50)
-            pygame.draw.line(screen, (180, 240, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 48)
         for p in self.particles:
             pygame.draw.circle(
-            screen,
-            settings.PARTICLE_COLOR,
-            (int(p["x"]), int(p["y"])),
-            settings.PARTICLE_RADIUS
+                screen,
+                settings.PARTICLE_COLOR,
+                (int(p["x"]), int(p["y"])),
+                settings.PARTICLE_RADIUS,
+                1
+            )
+
+        self.particles = [
+            p for p in self.particles 
+            if p["life"] > 0
+            and settings.LEFT_TANK < p["x"] < settings.RIGHT_TANK
+            and settings.TOP_TANK < p["y"] < settings.BOTTOM_TANK
+        ]
         )
 
 # STEP 6: EXPOSE THE JET STATE
