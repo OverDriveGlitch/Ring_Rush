@@ -88,18 +88,6 @@ class Water:
                 self.right_timer = 0
                 self.right_active = False 
 
-
-
-
-
-        
-
-
-
-        
-    
-
-
 # Define Water.__init__(self).
 # Store whether the jet is active.
 # Store how much time remains before the jet switches off.
@@ -129,6 +117,8 @@ class Water:
     # STEP 5: DRAW THE WATER JETS
     def draw(self, screen):
         for p in self.particles:
+            """self.particles is a list containing all the water particles. p represents one particle at a time. 
+            Each particle stores its position (x, y), velocity (vx, vy), and remaining lifetime (life)."""
             pygame.draw.circle(
                 screen,
                 settings.PARTICLE_COLOR,
@@ -136,7 +126,7 @@ class Water:
                 settings.PARTICLE_RADIUS,
                 1
             )
-
+        """Remove expired or out-of-bounds particles"""
         self.particles = [
             p for p in self.particles 
             if p["life"] > 0
