@@ -25,6 +25,10 @@ RIGHT_TANK = 660
 TOP_TANK = 76
 BOTTOM_TANK = 418
 
+LEFT_BUTTON = 318
+RIGHT_BUTTON = 449
+RIGHT_BUTTON = 588
+
 # STEP 3: RING SETTINGS
 # Define the starting number of rings, their radius, and their mass.
 # Keep the mass consistent with the physics system if using Pymunk.
