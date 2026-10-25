@@ -4,6 +4,7 @@
 import pygame
 import pymunk
 import settings
+import math
 # STEP 2: CREATE THE Physics CLASS
 # Define Physics.__init__(self, tank).
 # Create the physics space if using Pymunk.
@@ -75,13 +76,13 @@ class Physics:
     self.space.add(peg_shape1, peg_shape2, peg_shape3)
 
     
-    peg_line1 = pymunk.Segment(self.space.static_body,(tank.peg_positions[0][0], tank.peg_positions[0][1] - 45),tank.peg_positions[0],3)
+    # peg_line1 = pymunk.Segment(self.space.static_body,(tank.peg_positions[0][0], tank.peg_positions[0][1] - 45),tank.peg_positions[0],3)
 
-    peg_line2 = pymunk.Segment(self.space.static_body,(tank.peg_positions[1][0], tank.peg_positions[1][1] - 45),tank.peg_positions[1],3)
+    # peg_line2 = pymunk.Segment(self.space.static_body,(tank.peg_positions[1][0], tank.peg_positions[1][1] - 45),tank.peg_positions[1],3)
 
-    peg_line3 = pymunk.Segment(self.space.static_body,(tank.peg_positions[2][0], tank.peg_positions[2][1] - 45),tank.peg_positions[2],3)
+    # peg_line3 = pymunk.Segment(self.space.static_body,(tank.peg_positions[2][0], tank.peg_positions[2][1] - 45),tank.peg_positions[2],3)
 
-    self.space.add(peg_line1, peg_line2, peg_line3)
+    # self.space.add(peg_line1, peg_line2, peg_line3)
     
     self.peg_positions = tank.peg_positions
   
@@ -100,12 +101,34 @@ class Physics:
     #creates the ring's physics body using its mass and rotational movement
     body.position = (ring.x, ring.y)
     #starts the physics body at the ring's current position.
-    shape = pymunk.Circle(body, settings.RING_RAD)#collision space is circular
-    # Add the body and shape to the physics world
-    shape.friction = 0.5
-    shape.elasticity = 0.3
-    self.space.add(body, shape)
-    ring.body = body #adds the body back to ring object
+    # Build a hollow ring from connected physics segments
+    ring_shapes = []
+    number_of_segments = 24
+    ring_radius = settings.RING_RAD
+    line_thickness = 3
+
+    for i in range(number_of_segments):
+        angle1 = 2 * math.pi * i / number_of_segments
+        angle2 = 2 * math.pi * (i + 1) / number_of_segments
+
+        point1 = (
+            ring_radius * math.cos(angle1),
+            ring_radius * math.sin(angle1)
+        )
+        point2 = (
+            ring_radius * math.cos(angle2),
+            ring_radius * math.sin(angle2)
+        )
+
+        shape = pymunk.Segment(
+            body, point1, point2, line_thickness
+        )
+        shape.friction = 0.5
+        shape.elasticity = 0.3
+        ring_shapes.append(shape)
+
+    self.space.add(body, *ring_shapes)
+    ring.body = body
 
 # STEP 4: DEFINE physics.update(self, rings, water, dt)
 # This function is called once per game frame by main.py.
