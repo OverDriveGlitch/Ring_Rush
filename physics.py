@@ -103,7 +103,7 @@ class Physics:
     #starts the physics body at the ring's current position.
     # Build a hollow ring from connected physics segments
     ring_shapes = []
-    number_of_segments = 24
+    number_of_segments = 48
     ring_radius = settings.RING_RAD
     line_thickness = 3
 
