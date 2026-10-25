@@ -100,10 +100,14 @@ while running:
             ring.draw(screen)
 
     # WILL MAKE RINGS MOVE IN WATER
+
     # water.update(dt)
     if ui.state == "playing":
         physics.update(rings, water, dt)
         ui.add_score(points)
+
+
+    physics.update(rings, dt)
 
    
 
