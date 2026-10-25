@@ -70,10 +70,7 @@ class Physics:
     peg_shape3 = pymunk.Circle(self.space.static_body,tank.peg_radius,tank.peg_positions[2])
 
     for peg in [peg_shape1, peg_shape2, peg_shape3]:
-      peg.friction = 0.5
-      peg.elasticity = 0.5
-
-    self.space.add(peg_shape1, peg_shape2, peg_shape3)
+      peg.sensor = True
 
     
     # peg_line1 = pymunk.Segment(self.space.static_body,(tank.peg_positions[0][0], tank.peg_positions[0][1] - 45),tank.peg_positions[0],3)
@@ -232,22 +229,29 @@ class Physics:
             distance = (dx * dx + dy * dy) ** 0.5
             speed = (ring_velocity.x ** 2 + ring_velocity.y ** 2) ** 0.5
 
-            # Catch the ring when it is centred on the peg
-            if distance <= 6 and speed < 80:
+            
+            # Catch the ring when its center gets near the peg
+            if distance <= 16:
                 ring.it_lands = True
                 ring.it_scores = True
 
-                # Stop the ring from moving
+                # Stop the ring's movement
                 ring.body.velocity = (0, 0)
                 ring.body.angular_velocity = 0
                 ring.body.force = (0, 0)
                 ring.body.torque = 0
 
-                # Keep the ring caught in place
+                # Freeze the ring in place
                 ring.body.body_type = pymunk.Body.KINEMATIC
 
+                # Snap the ring to the peg's center
+                ring.body.position = peg_position
+                ring.body.angle = 0
+
+                # Award points
                 points += settings.RING_POINTS
                 break
+
 
     return points
 

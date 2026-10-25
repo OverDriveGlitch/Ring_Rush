@@ -28,7 +28,8 @@ class Water:
 
         """jet timers"""
         self.jet_duration = 0.25
-
+        self.jet_cooldown = 0.4 # seconds between activations
+        self.cooldowns = {"left": 0.0, "middle": 0.0, "right": 0.0}
         self.left_timer = 0.0
         self.middle_timer = 0.0
         self.right_timer = 0.0
@@ -36,6 +37,11 @@ class Water:
         self.particles = [] 
 
     def activate_jet(self, jet_name):
+        if jet_name not in self.cooldowns:
+            return
+        if self.cooldowns[jet_name] > 0:
+            return
+        self.cooldowns[jet_name] = self.jet_cooldown
         if jet_name == "left":
             self.left_active = True
             self.left_timer = self.jet_duration 
