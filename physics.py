@@ -235,7 +235,7 @@ class Physics:
             dy = ring_position.y - peg_position[1]
             distance = (dx * dx + dy * dy) ** 0.5
             # Temporary check for a ring settled beside a peg
-            target_distance =settings.RING_RAD - self.tank.peg_radius
+            target_distance =0
             tolerance = 8
             speed = (ring_velocity.x ** 2 + ring_velocity.y ** 2) ** 0.5
             if (abs(distance - target_distance) <= tolerance and speed < 20):
