@@ -33,7 +33,7 @@ RIGHT_BUTTON = 588
 # Define the starting number of rings, their radius, and their mass.
 # Keep the mass consistent with the physics system if using Pymunk.
 
-NUM_RINGS = 5
+NUM_RINGS = 6
 RING_RAD = 18
 RING_MASS = 1 
 
