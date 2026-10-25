@@ -62,29 +62,26 @@ class Physics:
     
     # Add collision shapes for the pegs using the positions in tank.pegs.
   
-    peg_shape1 = pymunk.Circle(
-      self.space.static_body,
-      tank.peg_radius,
-      tank.peg_positions[0]
-    )
+    peg_shape1 = pymunk.Circle(self.space.static_body,tank.peg_radius,tank.peg_positions[0])
 
-    peg_shape2 = pymunk.Circle(
-        self.space.static_body,
-        tank.peg_radius,
-        tank.peg_positions[1]
-      )
+    peg_shape2 = pymunk.Circle(self.space.static_body,tank.peg_radius,tank.peg_positions[1])
 
-    peg_shape3 = pymunk.Circle(
-        self.space.static_body,
-        tank.peg_radius,
-        tank.peg_positions[2]
-      )
+    peg_shape3 = pymunk.Circle(self.space.static_body,tank.peg_radius,tank.peg_positions[2])
 
     for peg in [peg_shape1, peg_shape2, peg_shape3]:
-            peg.friction = 0.5
-            peg.elasticity = 0.5
+      peg.friction = 0.5
+      peg.elasticity = 0.5
 
     self.space.add(peg_shape1, peg_shape2, peg_shape3)
+
+    
+    peg_line1 = pymunk.Segment(self.space.static_body,(tank.peg_positions[0][0], tank.peg_positions[0][1] - 45),tank.peg_positions[0],3)
+
+    peg_line2 = pymunk.Segment(self.space.static_body,(tank.peg_positions[1][0], tank.peg_positions[1][1] - 45),tank.peg_positions[1],3)
+
+    peg_line3 = pymunk.Segment(self.space.static_body,(tank.peg_positions[2][0], tank.peg_positions[2][1] - 45),tank.peg_positions[2],3)
+
+    self.space.add(peg_line1, peg_line2, peg_line3)
     
     self.peg_positions = tank.peg_positions
   
