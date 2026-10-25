@@ -97,7 +97,7 @@ while running:
     screen.blit(ui.background_image, (0, 0))
 
     water.update(dt)
-
+    
     ui.update(dt) 
 
     if ui.state == "playing":

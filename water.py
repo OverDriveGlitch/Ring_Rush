@@ -28,7 +28,8 @@ class Water:
 
         """jet timers"""
         self.jet_duration = 0.25
-
+        self.jet_cooldown = 0.4 # seconds between activations
+        self.cooldowns = {"left": 0.0, "middle": 0.0, "right": 0.0}
         self.left_timer = 0.0
         self.middle_timer = 0.0
         self.right_timer = 0.0
@@ -36,6 +37,11 @@ class Water:
         self.particles = [] 
 
     def activate_jet(self, jet_name):
+        if jet_name not in self.cooldowns:
+            return
+        if self.cooldowns[jet_name] > 0:
+            return
+        self.cooldowns[jet_name] = self.jet_cooldown
         if jet_name == "left":
             self.left_active = True
             self.left_timer = self.jet_duration 
@@ -45,6 +51,7 @@ class Water:
         elif jet_name == "right":
             self.right_active = True 
             self.right_timer = self.jet_duration 
+
     def spawn_particles(self, x):
         for i in range(settings.PARTICLE_COUNT):
             angle = math.radians(-90 + random.uniform(-settings.PARTICLE_SPREAD, settings.PARTICLE_SPREAD))
@@ -59,7 +66,6 @@ class Water:
 
     """Creates the method that updates the water jet as time passes"""
     def update(self, dt):
-
         #spawns particles 
         if self.left_active:
             self.spawn_particles(self.left_x)
@@ -77,21 +83,18 @@ class Water:
 
         if self.left_active:
             self.left_timer -= dt
-
             if self.left_timer <= 0:
                 self.left_timer = 0
                 self.left_active = False 
 
         if self.middle_active: 
             self.middle_timer -= dt
-
             if self.middle_timer <= 0:
                 self.middle_timer = 0
                 self.middle_active = False
 
         if self.right_active:
             self.right_timer -= dt
-
             if self.right_timer <= 0:
                 self.right_timer = 0
                 self.right_active = False 
