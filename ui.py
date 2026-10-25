@@ -27,7 +27,8 @@ class UI:
     pygame.font.init()
     self.game_font = pygame.font.SysFont("arialrounded", 24)
     self.button_image = pygame.transform.scale(self.button_image, (175,175))
-
+    self.win_image = pygame.image.load("pic/Win.png")
+    self.win_image = pygame.transform.scale(self.win_image, (900, 600))
    
     # Store the current score.
 
@@ -45,6 +46,8 @@ class UI:
   def add_score(self, points):
       if self.state == "playing" and points > 0: 
         self.score += points
+        if self.score >= 150:
+            self.state = "win"
       
     # Increase the score by the points received from main.py.
 
@@ -74,6 +77,9 @@ class UI:
       elif self.state == "game_over":
            screen.blit(self.end_image,(0,0))
            return
+      if self.state == "win":
+          screen.blit(self.win_image,(0,0))
+          return
       score_text = f"SCORE: {self.score}"
       time_text = f"TIME REMAINING: {self.remaining_time:.0f}"
       score_surface = self.game_font.render(score_text, True, "white", (204, 85, 0))

@@ -71,7 +71,7 @@ class Physics:
 
     for peg in [peg_shape1, peg_shape2, peg_shape3]:
       peg.sensor = True
-
+      for peg in[peg_shape1, peg_shape2, peg_shape3]:
     
     # peg_line1 = pymunk.Segment(self.space.static_body,(tank.peg_positions[0][0], tank.peg_positions[0][1] - 45),tank.peg_positions[0],3)
 
@@ -80,8 +80,7 @@ class Physics:
     # peg_line3 = pymunk.Segment(self.space.static_body,(tank.peg_positions[2][0], tank.peg_positions[2][1] - 45),tank.peg_positions[2],3)
 
     # self.space.add(peg_line1, peg_line2, peg_line3)
-    
-    self.peg_positions = tank.peg_positions
+        self.peg_positions = tank.peg_positions
   
 
 # STEP 3: ADD RINGS TO THE PHYSICS WORLD

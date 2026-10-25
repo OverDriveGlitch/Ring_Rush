@@ -39,7 +39,7 @@ water = Water(tank)
 
 rings = []
 for i in range(NUM_RINGS):
-    ring = Ring(280 + i * 70, 100)
+    ring = Ring(400 + i * 70, 100)
     ring.clr = (255 - (30 * i), 90 + (50 * i), 40)
     physics.add_ring(ring)
     rings.append(ring)
@@ -72,8 +72,9 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and ui.state =="start":
                 ui.start_round()
-            elif event.key == pygame.K_r and ui.state =="game_over":
+            elif event.key == pygame.K_r and ui.state in ("game_over", "win"):
                 ui.start_round()
+
 
             elif event.key == pygame.K_ESCAPE:
                 running = False
