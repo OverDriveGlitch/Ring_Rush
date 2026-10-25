@@ -3,11 +3,9 @@
 
 
 import pygame
-import os
 import settings
 #images
-GAME_HEIGHT = 600
-GAME_WIDTH = 900
+
 
 
 # STEP 2: CREATE THE UI CLASS
@@ -22,7 +20,6 @@ class UI:
     self.state = "start"
     self.score = settings.STARTING_SCORE
     self.button_image = pygame.image.load("pic/button.png")
-    print("Button image size:", self.button_image.get_size())
     self.end_image = pygame.image.load("pic/End.png")
     self.start_image = pygame.image.load("pic/Start.png")
     self.background_image = pygame.image.load("pic/Ring_Rush.png")

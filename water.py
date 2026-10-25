@@ -50,17 +50,17 @@ class Water:
         elif jet_name == "right":
             self.right_active = True 
             self.right_timer = self.jet_duration 
-    def spawn_particles(self, x):
-        for i in range(settings.PARTICLE_COUNT):
-            angle = math.radians(-90 + random.uniform(-settings.PARTICLE_SPREAD, settings.PARTICLE_SPREAD))
-            speed = settings.PARTICLE_SPEED * random.uniform(0.8, 1.2)
-            self.particles.append({
-                "x": x + random.uniform(-6, 6),
-                "y": self.jet_y,
-                "vx": math.cos(angle) * speed,
-                "vy": math.sin(angle) * speed,
-                "life": settings.PARTICLE_LIFETIME,
-            })
+    # def spawn_particles(self, x):
+    #     for i in range(settings.PARTICLE_COUNT):
+    #         angle = math.radians(-90 + random.uniform(-settings.PARTICLE_SPREAD, settings.PARTICLE_SPREAD))
+    #         speed = settings.PARTICLE_SPEED * random.uniform(0.8, 1.2)
+    #         self.particles.append({
+    #             "x": x + random.uniform(-6, 6),
+    #             "y": self.jet_y,
+    #             "vx": math.cos(angle) * speed,
+    #             "vy": math.sin(angle) * speed,
+    #             "life": settings.PARTICLE_LIFETIME,
+    #         })
 
     """Creates the method that updates the water jet as time passes"""
     def update(self, dt):
