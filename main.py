@@ -103,7 +103,7 @@ while running:
 
     screen.blit(ui.background_image, (0, 0))
 
-    # water.draw(screen)
+    water.draw(screen)
 
     tank.draw(screen)
 
