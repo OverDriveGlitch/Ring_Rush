@@ -73,8 +73,7 @@ class Physics:
     for peg in [peg_shape1, peg_shape2, peg_shape3]:
       peg.sensor = True
       #basically this function in pymunk lets you detect overlap without the sensor acting like a obstacle
-      # for peg in[peg_shape1, peg_shape2, peg_shape3]:
-      #   self.peg_positions = tank.peg_positions
+      #That creates the same three sensors, registers them and saves the positions for scoring.
     self.space.add(peg_shape1, peg_shape2, peg_shape3)
     self.peg_positions = tank.peg_positions
   
@@ -87,7 +86,7 @@ class Physics:
 # Hint: Pymunk bodies and shapes are separate objects.
   def add_ring(self, ring):
     #create a physics body for the ring
-    moment = pymunk.moment_for_circle(settings.RING_MASS,0,settings.RING_RAD)
+    moment = pymunk.moment_for_circle(settings.RING_MASS,2,settings.RING_RAD)
     #calling function moment_for_circle from pymunk and calculates how difficult the ring is to rotate
     body = pymunk.Body(settings.RING_MASS, moment)
     #creates the ring's physics body using its mass and rotational movement
