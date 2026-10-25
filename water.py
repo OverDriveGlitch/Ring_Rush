@@ -45,9 +45,36 @@ class Water:
         elif jet_name == "right":
             self.right_active = True 
             self.right_timer = self.jet_duration 
+    def spawn_particles(self, x):
+        for i in range(settings.PARTICLE_COUNT):
+            angle = math.radians(-90 + random.uniform(-settings.PARTICLE_SPREAD, settings.PARTICLE_SPREAD))
+            speed = settings.PARTICLE_SPEED * random.uniform(0.8, 1.2)
+            self.particles.append({
+                "x": x + random.uniform(-6, 6),
+                "y": self.jet_y,
+                "vx": math.cos(angle) * speed,
+                "vy": math.sin(angle) * speed,
+                "life": settings.PARTICLE_LIFETIME,
+            })
 
     """Creates the method that updates the water jet as time passes"""
     def update(self, dt):
+
+        #spawns particles 
+        if self.left_active:
+            self.spawn_particles(self.left_x)
+        if self.middle_active:
+            self.spawn_particles(self.middle_x)
+        if self.right_active:
+            self.spawn_particles(self.right_x)
+
+        #update particle positions and remove expired particles
+        for p in self.particles:
+            p["x"] += p["vx"] * dt
+            p["y"] += p["vy"] * dt
+            p["life"] -= dt
+        self.particles = [p for p in self.particles if p["life"] > 0]
+
         if self.left_active:
             self.left_timer -= dt
 
@@ -130,20 +157,6 @@ class Water:
             (int(p["x"]), int(p["y"])),
             settings.PARTICLE_RADIUS
         )
-
-
-        def spawn_particles(self, x):
-            for i in range(settings.PARTICLE_COUNT):
-                angle = math.radians(-90 + random.uniform(-settings.PARTICLE_SPREAD, settings.PARTICLE_SPREAD))
-                speed = settings.PARTICLE_SPEED * random.uniform(0.8, 1.2)
-                self.particles.append({
-                    "x": x + random.uniform(-6, 6),
-                    "y": self.jet_y,
-                    "vx": math.cos(angle) * speed,
-                    "vy": math.sin(angle) * speed,
-                    "life": settings.PARTICLE_LIFETIME,
-                })
-
 
 # STEP 6: EXPOSE THE JET STATE
 # Provide a consistent way for physics.py to check whether a jet is active.
