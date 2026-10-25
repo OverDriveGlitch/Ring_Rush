@@ -58,7 +58,7 @@ PARTICLE_COLOR = (180, 240, 255)
 
 GRAVITY = 500
 WATER_DRAG = 0.7
-BUOYANCY = 0.5
+BUOYANCY = 0.2
 
 # STEP 6: GAME SETTINGS
 # Define the round duration, starting score, and points per successful ring.
