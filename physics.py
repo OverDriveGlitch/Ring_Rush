@@ -175,16 +175,8 @@ class Physics:
                 horizontal_distance = abs(ring_x - jet_x)
                 vertical_distance = water.jet_y - ring_y
 
-                if (
-                    horizontal_distance <= settings.RING_RAD + 12
-                    and -settings.RING_RAD <= vertical_distance <= 100
-                ):
-                    # Push the ring upward
-                    self.apply_water_force(
-                        ring,
-                        0,
-                        -body.mass * 3000
-                    )
+                if (horizontal_distance <= self.tank.width // 4 and 0 <= vertical_distance <= self.tank.height):
+                    self.apply_water_force(ring,0,-body.mass * 2000)
     #using the pymunk advance simulation by dt seconds 
     self.space.step(dt)
     # updates the rings position with the current
