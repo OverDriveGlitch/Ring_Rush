@@ -88,6 +88,8 @@ while running:
     previous_left = ui.leftpressed
     previous_middle = ui.midpressed
     previous_right = ui.rightpressed
+    
+    screen.blit(ui.background_image, (0, 0))
 
     water.update(dt)
 
@@ -99,9 +101,11 @@ while running:
 
     # WILL MAKE RINGS MOVE IN WATER
     # water.update(dt)
-    physics.update(rings, dt)
+    if ui.state == "playing":
+        physics.update(rings, water, dt)
+        ui.add_score(points)
 
-    screen.blit(ui.background_image, (0, 0))
+   
 
     water.draw(screen)
 

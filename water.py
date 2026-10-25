@@ -19,8 +19,8 @@ class Water:
         self.jet_y = self.tank.y + self.tank.height - bottom_of_tank
         """jet positions"""
         self.left_x = self.tank.x + self.tank.width // 4
-        self.middle_x = 150 + 600 // 2
-        self.right_x = (150 + 600) * 3//4
+        self.middle_x = self.tank.x + self.tank.width // 2
+        self.right_x = self.tank.x + (self.tank.width * 3) // 4
 
         """jet timers"""
         self.jet_duration = 0.25
@@ -52,9 +52,9 @@ class Water:
         if self.middle_active: 
             self.middle_timer -= dt
 
-            if self.middle_active <= 0:
-             self.middle_timer = 0
-             self.middle_timer = False
+            if self.middle_timer <= 0:
+                self.middle_timer = 0
+                self.middle_active = False
 
         if self.right_active:
             self.right_timer -= dt

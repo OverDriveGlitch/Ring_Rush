@@ -129,13 +129,13 @@ class Physics:
 # Return the number of newly earned points for this frame.
 # Hint: Use Pymunk collision handlers or carefully designed overlap checks.
 # Do not advance the simulation by a fixed amount if frame times vary.
-  def update(self, rings, dt):
+  def update(self, rings, water, dt):
     #applies upward force to simulate bouyancy
     for ring in rings:
         if ring.body is not None:
             body=ring.body
 
-            ring.body.apply_force_at_local_point(
+            body.apply_force_at_local_point(
                 (0, -ring.body.mass * 700),
                 (0, 0)
             )
@@ -144,6 +144,35 @@ class Physics:
                 body.velocity.x * 0.99,
                 body.velocity.y * 0.99
             )
+
+            # Check the left, middle, and right water jets
+            jets = [
+                (water.left_active, water.left_x),
+                (water.middle_active, water.middle_x),
+                (water.right_active, water.right_x)
+            ]
+
+            for jet_active, jet_x in jets:
+                if not jet_active:
+                    continue
+
+                # Check whether the ring is within the jet's range
+                ring_x = body.position.x
+                ring_y = body.position.y
+
+                horizontal_distance = abs(ring_x - jet_x)
+                vertical_distance = water.jet_y - ring_y
+
+                if (
+                    horizontal_distance <= settings.RING_RAD + 12
+                    and -settings.RING_RAD <= vertical_distance <= 100
+                ):
+                    # Push the ring upward
+                    self.apply_water_force(
+                        ring,
+                        0,
+                        -body.mass * 2500
+                    )
     #using the pymunk advance simulation by dt seconds 
     self.space.step(dt)
     # updates the rings position with the current

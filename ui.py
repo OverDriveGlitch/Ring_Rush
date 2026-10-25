@@ -75,7 +75,7 @@ class UI:
            screen.blit(self.end_image,(0,0))
            return
       score_text = f"SCORE: {self.score}"
-      time_text = f"TIME REMAINING\n IS: {self.remaining_time:.0f}"
+      time_text = f"TIME REMAINING: {self.remaining_time:.0f}"
       score_surface = self.game_font.render(score_text, True, "white", (204, 85, 0))
       time_surface = self.game_font.render(time_text, True, "white", (204, 85, 0))
     # Draw the current score and remaining time.
