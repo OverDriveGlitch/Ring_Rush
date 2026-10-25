@@ -211,8 +211,8 @@ class Physics:
         ring_position = ring.body.position
         ring_velocity = ring.body.velocity
         for peg_position in self.peg_positions:
-            dx = ring_position.x - peg_position.x
-            dy = ring_position.y - peg_position.y
+            dx = ring_position.x - peg_position[0]
+            dy = ring_position.y - peg_position[1]
             distance = (dx * dx + dy * dy) ** 0.5
             # Temporary check for a ring settled beside a peg
             target_distance = settings.RING_RAD * 2
