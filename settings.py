@@ -49,7 +49,7 @@ PARTICLE_SPEED = 250         # pixels per second
 PARTICLE_LIFETIME = 0.8      # seconds before a particle disappears
 PARTICLE_RADIUS = 8          # pixels
 PARTICLE_SPREAD = 45         # degrees of random angle variation
-PARTICLE_COLOR = (180, 220, 255)
+PARTICLE_COLOR = (255, 255, 255)
 
 # STEP 5: PHYSICS SETTINGS
 # Define gravity, water drag, and approximate buoyancy settings.
