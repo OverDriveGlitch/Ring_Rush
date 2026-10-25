@@ -40,7 +40,7 @@ water = Water(tank)
 rings = []
 for i in range(NUM_RINGS):
     # changes postition of each ring
-    ring = Ring(400 + i * 70, 100)
+    ring = Ring(350 + i * 70, 100)
     #changes colour of each ring by one
     ring.clr = (255 - (30 * i), 90 + (50 * i), 40)
     physics.add_ring(ring)
