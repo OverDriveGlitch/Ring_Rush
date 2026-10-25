@@ -183,7 +183,7 @@ class Physics:
                     self.apply_water_force(
                         ring,
                         0,
-                        -body.mass * 2500
+                        -body.mass * 5000
                     )
     #using the pymunk advance simulation by dt seconds 
     self.space.step(dt)
