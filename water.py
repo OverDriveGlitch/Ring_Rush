@@ -1,6 +1,8 @@
 import settings
 import pygame
 import pymunk 
+import random
+import math
 
 
 
@@ -30,6 +32,8 @@ class Water:
         self.left_timer = 0.0
         self.middle_timer = 0.0
         self.right_timer = 0.0
+
+        self.particles = [] 
 
     def activate_jet(self, jet_name):
         if jet_name == "left":
@@ -119,6 +123,27 @@ class Water:
         if self.right_active:
             pygame.draw.line(screen, (0, 150, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 50)
             pygame.draw.line(screen, (180, 240, 255),(self.right_x, jet_bottom),(self.right_x, jet_bottom - jet_height), 48)
+        for p in self.particles:
+            pygame.draw.circle(
+            screen,
+            settings.PARTICLE_COLOR,
+            (int(p["x"]), int(p["y"])),
+            settings.PARTICLE_RADIUS
+        )
+
+
+        def spawn_particles(self, x):
+            for i in range(settings.PARTICLE_COUNT):
+                angle = math.radians(-90 + random.uniform(-settings.PARTICLE_SPREAD, settings.PARTICLE_SPREAD))
+                speed = settings.PARTICLE_SPEED * random.uniform(0.8, 1.2)
+                self.particles.append({
+                    "x": x + random.uniform(-6, 6),
+                    "y": self.jet_y,
+                    "vx": math.cos(angle) * speed,
+                    "vy": math.sin(angle) * speed,
+                    "life": settings.PARTICLE_LIFETIME,
+                })
+
 
 # STEP 6: EXPOSE THE JET STATE
 # Provide a consistent way for physics.py to check whether a jet is active.
