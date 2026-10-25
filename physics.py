@@ -175,16 +175,8 @@ class Physics:
                 horizontal_distance = abs(ring_x - jet_x)
                 vertical_distance = water.jet_y - ring_y
 
-                if (
-                    horizontal_distance <= settings.RING_RAD + 12
-                    and -settings.RING_RAD <= vertical_distance <= 100
-                ):
-                    # Push the ring upward
-                    self.apply_water_force(
-                        ring,
-                        0,
-                        -body.mass * 3000
-                    )
+                if (horizontal_distance <= self.tank.width // 4 and 0 <= vertical_distance <= self.tank.height):
+                    self.apply_water_force(ring,0,-body.mass * 2000)
     #using the pymunk advance simulation by dt seconds 
     self.space.step(dt)
     # updates the rings position with the current
@@ -225,27 +217,36 @@ class Physics:
   
   def check_scoring(self, rings):
     points = 0
+
     for ring in rings:
         if ring.body is None or ring.it_scores:
             continue
+
         ring_position = ring.body.position
         ring_velocity = ring.body.velocity
+
         for peg_position in self.peg_positions:
             dx = ring_position.x - peg_position[0]
             dy = ring_position.y - peg_position[1]
+
             distance = (dx * dx + dy * dy) ** 0.5
-            # Temporary check for a ring settled beside a peg
-            target_distance =0
-            tolerance = 8
             speed = (ring_velocity.x ** 2 + ring_velocity.y ** 2) ** 0.5
-            if (abs(distance - target_distance) <= tolerance and speed < 20):
+
+            # Catch the ring when it is centred on the peg
+            if distance <= 6 and speed < 80:
                 ring.it_lands = True
                 ring.it_scores = True
 
+                # Stop the ring from moving
                 ring.body.velocity = (0, 0)
                 ring.body.angular_velocity = 0
+                ring.body.force = (0, 0)
+                ring.body.torque = 0
+
+                # Keep the ring caught in place
                 ring.body.body_type = pymunk.Body.KINEMATIC
-                points += 1
+
+                points += settings.RING_POINTS
                 break
 
     return points
