@@ -20,9 +20,9 @@ class Water:
         """height of the tank"""
         self.jet_y = self.tank.y + self.tank.height - bottom_of_tank
         """jet positions"""
-        self.left_x = self.tank.x + self.tank.width // 4
-        self.middle_x = self.tank.x + self.tank.width // 2
-        self.right_x = self.tank.x + (self.tank.width * 3) // 4
+        self.left_x = settings.LEFT_BUTTON
+        self.middle_x = settings.MIDDLE_BUTTON
+        self.right_x = settings.RIGHT_BUTTON
 
         """jet timers"""
         self.jet_duration = 0.25
