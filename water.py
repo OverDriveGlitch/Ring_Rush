@@ -61,7 +61,7 @@ class Water:
 
             if self.right_timer <= 0:
                 self.right_timer = 0
-                self.right_timer = False 
+                self.right_active = False 
 
 
 
