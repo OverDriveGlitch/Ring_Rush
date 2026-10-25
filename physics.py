@@ -147,9 +147,9 @@ class Physics:
         if ring.body is not None and not ring.it_lands:
             body=ring.body
 
-            body.apply_force_at_local_point(
-                (0, -ring.body.mass * 700),
-                (0, 0)
+            body.apply_force_at_world_point(
+                (0, -body.mass * 700),
+                body.position
             )
             # Reduce horizontal and vertical velocity gradually
             body.velocity = (
@@ -203,9 +203,9 @@ class Physics:
 # Hint: A jet that pushes every ring equally will feel less convincing.
   def apply_water_force(self, ring, force_x, force_y):
     if ring.body is not None:
-        ring.body.apply_force_at_local_point(
+        ring.body.apply_force_at_world_point(
             (force_x, force_y),
-            (0, 0)
+            ring.body.position
         )
 
 
