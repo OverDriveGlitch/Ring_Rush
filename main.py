@@ -114,7 +114,6 @@ while running:
 
    
 
-    water.draw(screen)
 
     tank.draw(screen)
 
@@ -123,7 +122,11 @@ while running:
 
 
     # draw menus
+
+    water.draw(screen)
+    
     ui.draw(screen)
+
 
     pygame.display.flip()
 
