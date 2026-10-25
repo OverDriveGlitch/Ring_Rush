@@ -108,8 +108,8 @@ while running:
 
     # water.update(dt)
     if ui.state == "playing":
-        physics.update(rings, water, dt)
-        #ui.add_score(points)
+        points = physics.update(rings, water, dt)
+        ui.add_score(points)
 
    
 
