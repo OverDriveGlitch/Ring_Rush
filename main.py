@@ -39,7 +39,9 @@ water = Water(tank)
 
 rings = []
 for i in range(NUM_RINGS):
+    # changes postition of each ring
     ring = Ring(400 + i * 70, 100)
+    #changes colour of each ring by one
     ring.clr = (255 - (30 * i), 90 + (50 * i), 40)
     physics.add_ring(ring)
     rings.append(ring)
@@ -78,7 +80,7 @@ while running:
 
             elif event.key == pygame.K_ESCAPE:
                 running = False
-    
+    #receives input by every key and distrubes to both the button 
     keys = pygame.key.get_pressed()
     ui.leftpressed = keys[pygame.K_a]
     ui.midpressed = keys[pygame.K_s]
@@ -113,7 +115,7 @@ while running:
         ui.add_score(points)
 
    
-
+    #calls each function with screen "ablities"
     water.draw(screen)
 
     tank.draw(screen)
