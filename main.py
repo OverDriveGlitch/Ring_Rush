@@ -20,7 +20,7 @@ pygame.init()
 
 pygame.mixer.init()
 
-button_sound = pygame.mixer.Sound("sounds/bubble-sound-effect.mp3")
+button_sound = pygame.mixer.Sound("sounds/sound-effect.mp3")
 
 #setting up screen
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
