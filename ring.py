@@ -43,8 +43,8 @@ class Ring:
 # The drawing position must match the physics body's position.
     def draw (self,screen):
         if self.body is not None:
-            #checking if the ring has a body
-            x, y = self.body.position
+            #checking if the ring has a body and if it does it uses its coordinates
+            x, y = self.body.position 
         else:
             x, y = self.x, self.y
 

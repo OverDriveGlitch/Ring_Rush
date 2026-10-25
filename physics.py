@@ -86,7 +86,7 @@ class Physics:
 # Hint: Pymunk bodies and shapes are separate objects.
   def add_ring(self, ring):
     #create a physics body for the ring
-    moment = pymunk.moment_for_circle(settings.RING_MASS,2,settings.RING_RAD)
+    moment = pymunk.moment_for_circle(settings.RING_MASS,18,settings.RING_RAD)
     #calling function moment_for_circle from pymunk and calculates how difficult the ring is to rotate
     body = pymunk.Body(settings.RING_MASS, moment)
     #creates the ring's physics body using its mass and rotational movement
@@ -99,6 +99,7 @@ class Physics:
     line_thickness = 3
 
     for i in range(number_of_segments):
+        #loop running 48 times with it going from 0-47
         angle1 = 2 * math.pi * i / number_of_segments
         angle2 = 2 * math.pi * (i + 1) / number_of_segments
 
@@ -114,11 +115,12 @@ class Physics:
         shape = pymunk.Segment(
             body, point1, point2, line_thickness
         )
-        shape.friction = 0.5
-        shape.elasticity = 0.3
+        shape.friction = settings.WALL_RESISTANCE
+        shape.elasticity = settings.BUOYANCY
         ring_shapes.append(shape)
 
-    self.space.add(body, *ring_shapes)
+    self.space.add(body, *ring_shapes) 
+    #*_name_ unpacks the list: shape1,shape2,shape3
     ring.body = body
 
 # STEP 4: DEFINE physics.update(self, rings, water, dt)
@@ -135,14 +137,18 @@ class Physics:
   def update(self, rings, water, dt):
     #applies upward force to simulate bouyancy
     for ring in rings:
-        if ring.body is not None and not ring.it_lands:
-            body=ring.body
-
+        #going through each ring
+        if ring.body is not None and not ring.it_lands: #must have body and not landed
+            body=ring.body 
+             
+            """is the force vector.0: no horizontal force.body.mass 700: upward force because the y-axis points downward."""
             body.apply_force_at_world_point(
-                (0, -body.mass * 700),
+              
+                (0, -body.mass * 700), #negtive pushes up and positive push down
+                #formula: F=ma so a=F/m, a=(900(gravity)-700)=200
                 body.position
             )
-            # Reduce horizontal and vertical velocity gradually
+            # Reduce horizontal and vertical velocity gradually by 1%
             body.velocity = (
                 body.velocity.x * 0.99,
                 body.velocity.y * 0.99
@@ -156,6 +162,7 @@ class Physics:
             ]
 
             for jet_active, jet_x in jets:
+                """checking if the jets are active or not, if not active than it goes to the next"""
                 if not jet_active:
                     continue
 
@@ -164,10 +171,16 @@ class Physics:
                 ring_y = body.position.y
 
                 horizontal_distance = abs(ring_x - jet_x)
+                #just finding the horizontal distance between the ring and jet using its x coordinates
                 vertical_distance = water.jet_y - ring_y
+                #finding vertical distance using y coordinates from jet and ring
 
                 if (horizontal_distance <= self.tank.width // 4 and 0 <= vertical_distance <= self.tank.height):
-                    self.apply_water_force(ring,0,-body.mass * 2000)
+                    #basicallly checking if the ring is inside the jet's affected region
+                    """The ring's centre must be within one-quarter of the tank's width from the jet's x-coordinate.
+                    and the ring's centre must be at or above the y-coordinate represented by water.jet_y.
+                    """
+                    self.apply_water_force(ring,0,-body.mass * 2000) #the force of the acceleration
     #using the pymunk advance simulation by dt seconds 
     self.space.step(dt)
     # updates the rings position with the current
@@ -185,6 +198,11 @@ class Physics:
 # Make sure the visual jet and the physical force agree.
 # Hint: A jet that pushes every ring equally will feel less convincing.
   def apply_water_force(self, ring, force_x, force_y):
+    """The method receives:
+  - self: the physics object.
+  - ring: the ring that should be affected.
+  - force_x: the horizontal force.
+  - force_y: the vertical force."""
     if ring.body is not None:
         ring.body.apply_force_at_world_point(
             (force_x, force_y),
@@ -207,22 +225,23 @@ class Physics:
 # Return points only when a ring newly scores.
   
   def check_scoring(self, rings):
+    """decides when the program should score and return the points"""
     points = 0
 
     for ring in rings:
         if ring.body is None or ring.it_scores:
             continue
-
+            #saving the current position and velocity 
         ring_position = ring.body.position
         ring_velocity = ring.body.velocity
 
         for peg_position in self.peg_positions:
             dx = ring_position.x - peg_position[0]
             dy = ring_position.y - peg_position[1]
-
+            #finding distance between the ring's center and pegs center
             distance = (dx * dx + dy * dy) ** 0.5
             speed = (ring_velocity.x ** 2 + ring_velocity.y ** 2) ** 0.5
-
+            #This gives the magnitude of the ring's velocity — its overall speed, regardless of direction.
             
             # Catch the ring when its center gets near the peg
             if distance <= 16:
@@ -240,6 +259,7 @@ class Physics:
 
                 # Snap the ring to the peg's center
                 ring.body.position = peg_position
+                #taking peg center position for snapping
                 ring.body.angle = 0
 
                 # Award points
